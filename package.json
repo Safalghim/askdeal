@@ -1,0 +1,17 @@
+{
+  "name": "askdeal",
+  "version": "1.0.0",
+  "description": "A mobile application for managing deals and offers.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run serve",
+    "serve": "php -S localhost:8000 -t public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
+}
