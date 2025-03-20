@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ASKDEAL</title>
+    <title>ASKDEAL - Get The Best Offers In All Products At One Place</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="logo.png">
     <script src="main.js" defer></script>
 </head>
 
@@ -21,10 +22,9 @@
     <nav>
         <h1 class="logo">ASKDEAL</h1>
         <div class="nav-buttons">
-            <button onclick="showSection('home')">Home</button>
-            <button onclick="showSection('products')">Products</button>
-            <button onclick="showSection('deals')">Deals</button>
-            <button onclick="showSection('about')">About Us</button>
+            <a href="/" class="nav-link">Home</a>
+            <a href="/products.html" class="nav-link">Products</a>
+            <a href="/about.html" class="nav-link">About Us</a>
         </div>
 
         <!-- Search Bar -->
@@ -37,8 +37,10 @@
 
         <!-- User and Cart -->
         <div class="user-cart">
-            <button class="user-icon" onclick="showUserMenu()">
-                <i class="fa fa-user"></i>
+            <button class="user-icon">
+                <a href="/sign-in.html">
+                    <i class="fa fa-user"></i>
+                </a>
             </button>
             <button class="cart-icon" onclick="viewCart()">
                 <i class="fa fa-shopping-cart"></i>
@@ -46,89 +48,39 @@
         </div>
     </nav>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="home active">
-            <h2>Featured Products</h2>
-            <div class="prod-container">
-                <div class="prod fadeIn">
-                    <img src="products/n2.jpg" alt="Smart Casual Shirt">
-                    <div class="des">
-                        <span>Calvin Klein</span>
-                        <h5>Smart Casual Button-Down</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <h4>£79</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+    <!-- Home Section -->
+    <section id="home" class="home active">
+        <div class="product-showcase">
+            <div class="product-container">
+                <div class="product-image-container">
+                    <img src="/products/m4.webp" alt="M4 MacBook Air" class="product-image">
+                    <div class="product-badge">New</div>
                 </div>
-
-                <div class="prod fadeIn">
-                    <img src="products/n1.jpg" alt="Cotton Shirt">
-                    <div class="des">
-                        <span>Calvin Klein</span>
-                        <h5>Cotton in White</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                <div class="product-details">
+                    <h1 class="product-title">MacBook Air M4</h1>
+                    <h3 class="product-subtitle">Power. Lightness. Brilliance.</h3>
+                    <div class="product-description">
+                        <p>
+                            Superlight and just 1.13 centimetres thin, MacBook Air fits easily into your bag — and your
+                            on-the-go lifestyle. The sleek, durable aluminum enclosure houses an incredible amount of
+                            technology into a fanless design.
+                        </p>
+                        <div class="cta-container">
+                            <a href="#" class="cta-button">Shop Now</a>
                         </div>
-                        <h4>£89</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about">
-            <h2>About ASKDEAL</h2>
-            <p>
-                ASKDEAL is your one-stop destination for all shopping needs. We offer a
-                variety of products at unbeatable prices, from the latest gadgets to
-                fashionable clothing. Enjoy seamless shopping with secure payment
-                methods and fast delivery.
-            </p>
-
-            <!-- Features List -->
-            <div class="features">
-                <h3>Why Choose ASKDEAL?</h3>
-                <div class="section-p1">
-                    <div class="fe-box">
-                        <img src="features/f1.png" alt="Free Shipping">
-                        <h6>Free Shipping</h6>
-                    
-                    <div class="fe-box">
-                        <img src="features/f2.png" alt="Online Order">
-                        <h6>Online Order</h6>
-                    
-                    <div class="fe-box">
-                        <img src="features/f3.png" alt="Save Money">
-                        <h6>Save Money</h6>
-                    </div>
-                    <div class="fe-box">
-                        <img src="features/f4.png" alt="Promotions">
-                        <h6>Promotions</h6>
-                    </div>
-                    <div class="fe-box">
-                        <img src="features/f5.png" alt="Happy Sell">
-                        <h6>Happy Sell</h6>
-                    </div>
-                    <div class="fe-box">
-                        <img src="features/f6.png" alt="24/7 Support">
-                        <h6>24/7 Support</h6>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <!-- Featured Products -->
+        <h2>Our Other Products</h2>
+        <div class="prod-container">
+            <!-- Products will be dynamically added here -->
+        </div>
+    </section>
+
+
 
     <!-- Footer Section -->
     <footer>

@@ -21,10 +21,9 @@
     <nav>
         <h1 class="logo">ASKDEAL</h1>
         <div class="nav-buttons">
-            <button onclick="showSection('home')">Home</button>
-            <button onclick="showSection('products')">Products</button>
-            <button onclick="showSection('deals')">Deals</button>
-            <button onclick="showSection('about')">About Us</button>
+            <a href="/" class="nav-link">Home</a>
+            <a href="/products.html" class="nav-link">Products</a>
+            <a href="/about.html" class="nav-link">About Us</a>
         </div>
 
         <!-- Search Bar -->
@@ -37,8 +36,10 @@
 
         <!-- User and Cart -->
         <div class="user-cart">
-            <button class="user-icon" onclick="showUserMenu()">
-                <i class="fa fa-user"></i>
+            <button class="user-icon">
+                <a href="/sign-in.html">
+                    <i class="fa fa-user"></i>
+                </a>
             </button>
             <button class="cart-icon" onclick="viewCart()">
                 <i class="fa fa-shopping-cart"></i>
