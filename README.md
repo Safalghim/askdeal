@@ -1,4 +1,3 @@
-![AskDeal Logo](/logo.png "AskDeal Logo")
 
 # AskDeal
 
