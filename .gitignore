@@ -1,32 +1,3 @@
-# Node.js dependencies
 node_modules/
-
-# PHP specific
-/vendor/
-/composer.phar
-
-# Environment variables
-.env
-
-# PHPStorm
-.idea/
-
-# MacOS
 .DS_Store
-
-# Logs
-logs/
-*.log
-
-# Temporary files
-tmp/
-temp/
-*.tmp
-
-# Generated files
-public/build/
-
-# Ignore minified and compiled files
-*.min.js
-*.min.css
-*.map
+.env
