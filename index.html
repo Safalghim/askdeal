@@ -7,21 +7,21 @@
     <title>ASKDEAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
-    <script src="/main.js"></script>
+    <script src="main.js" defer></script>
 </head>
 
 <body>
     <!-- Welcome Section -->
     <section class="welcomsec">
         <h2>Welcome to ASKDEAL</h2>
-        <h3>Get The Best Offers In ALl Products At One Place</h3>
+        <h3>Get The Best Offers In All Products At One Place</h3>
     </section>
+
     <!-- Navbar Section -->
     <nav>
         <h1 class="logo">ASKDEAL</h1>
         <div class="nav-buttons">
-            <button onclick="showSection('home')">Home
-            </button>
+            <button onclick="showSection('home')">Home</button>
             <button onclick="showSection('products')">Products</button>
             <button onclick="showSection('deals')">Deals</button>
             <button onclick="showSection('about')">About Us</button>
@@ -31,11 +31,10 @@
         <div class="search-container">
             <input type="text" placeholder="Search..." class="search-bar">
             <button class="search-button">
-                <span class="material-icons">
-                    search
-                </span>
+                <i class="fas fa-search"></i>
             </button>
         </div>
+
         <!-- User and Cart -->
         <div class="user-cart">
             <button class="user-icon" onclick="showUserMenu()">
@@ -45,85 +44,48 @@
                 <i class="fa fa-shopping-cart"></i>
             </button>
         </div>
-        </div>
-
-
     </nav>
-
-
 
     <main>
         <!-- Hero Section -->
-        <section class="home" id="home prod-1">
-            <section id="prod-1" class="active">
-
-
-                <h2>Featured Products</h2>
-                <div class="prod-container">
-
-
-                    <div class="prod fadeIn">
-                        <img src="products/n2.jpg" alt="Smart Casual Shirt">
-                        <div class="des">
-                            <span>calvin klein</span>
-                            <h5>Smart Casual Button-Down</h5>
-                            <div class="star">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <h4>£79</h4>
+        <section id="home" class="home active">
+            <h2>Featured Products</h2>
+            <div class="prod-container">
+                <div class="prod fadeIn">
+                    <img src="products/n2.jpg" alt="Smart Casual Shirt">
+                    <div class="des">
+                        <span>Calvin Klein</span>
+                        <h5>Smart Casual Button-Down</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                        <h4>£79</h4>
                     </div>
-                    <div class="prod-container">
-                        <section id="prod-1" class="active">
-
-
-                    <div class="prod fadeIn">
-                        <img src="products/n1.jpg" alt="Smart Casual Shirt">
-                        <div class="des">
-                            <span>calvin klein</span>
-                            <h5>coton in white</h5>
-                            <div class="star">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <h4>£89</h4>
-                        </div>
-                        <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                    </div>
-
-
-
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
                 </div>
 
-
-                <!--             
-                <h2>Categories</h2>
-                <div class="container">
-                    <button class="box" onclick="showSection('electronics')">
-                        <h3>Electronics</h3>
-                    </button>
-                    <button class="box" onclick="showSection('clothing')">
-                        <h3>Clothing</h3>
-                    </button>
-                    <button class="box" onclick="showSection('furniture')">
-                        <h3>Furniture</h3>
-                    </button>
-                    <button class="box" onclick="showSection('sports')">
-                        <h3>Sports</h3>
-                    </button>
-                </div> -->
-            </section>
-
+                <div class="prod fadeIn">
+                    <img src="products/n1.jpg" alt="Cotton Shirt">
+                    <div class="des">
+                        <span>Calvin Klein</span>
+                        <h5>Cotton in White</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <h4>£89</h4>
+                    </div>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
         </section>
-
 
         <!-- About Section -->
         <section id="about">
@@ -138,10 +100,9 @@
             <!-- Features List -->
             <div class="features">
                 <h3>Why Choose ASKDEAL?</h3>
-
-                <section class="active section-p1" id="features">
+                <div class="section-p1">
                     <div class="fe-box">
-                        <img src="features/f1.png" alt="Free Shipping Icon">
+                        <img src="features/f1.png" alt="Free Shipping">
                         <h6>Free Shipping</h6>
                     </div>
                     <div class="fe-box">
@@ -161,12 +122,10 @@
                         <h6>Happy Sell</h6>
                     </div>
                     <div class="fe-box">
-                        <img src="features/f6.png" alt="F24/7 Support">
-                        <h6>F24/7 Support</h6>
+                        <img src="features/f6.png" alt="24/7 Support">
+                        <h6>24/7 Support</h6>
                     </div>
-                </section>
-
-
+                </div>
             </div>
         </section>
     </main>
@@ -195,24 +154,17 @@
             <div class="footer-social">
                 <h2>Follow Us</h2>
                 <div class="social-icons">
-                    <a href="#" class="social-icon">
-                        Facebook
-                    </a>
-                    <a href="#" class="social-icon">
-                        Twitter
-                    </a>
-                    <a href="#" class="social-icon">
-                        Instagram
-                    </a>
-                    <a href="#" class="social-icon">
-                        LinkedIn
-                    </a>
+                    <a href="#" class="social-icon">Facebook</a>
+                    <a href="#" class="social-icon">Twitter</a>
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">LinkedIn</a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p class="date">&copy; 2025 ASKDEAL. All rights reserved.</p>
+            <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
         </div>
     </footer>
+</body>
 
 </html>
