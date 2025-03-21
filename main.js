@@ -29,7 +29,7 @@ function generateProductHTML(product) {
 // Function to display products
 function displayProducts(productsArray) {
   home_prod.innerHTML = "";
-  productsArra.forEach((product) => {
+  productsArray.slice(0, 6).forEach((product) => {
     home_prod.innerHTML += generateProductHTML(product);
   });
 }

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details with Payment Gateway</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        #pro-det {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 50px 80px;
+        }
+
+        #pro-det .single-img {
+            width: 40%;
+            margin-right: 50px;
+        }
+
+        .small-img-gc {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .small-img-col {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .small-img-col img {
+            width: 23%;
+            cursor: pointer;
+            border: 1px solid #e1e1e1;
+            transition: 0.3s;
+        }
+
+        .small-img-col img:hover {
+            border: 1px solid #088178;
+        }
+
+        .product-details {
+            width: 50%;
+        }
+
+        h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #088178;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        /* Payment Gateway Styles */
+        .payment-gateway {
+            margin-top: 30px;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-gateway h3 {
+            color: #088178;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e1e1e1;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .card-details {
+            display: flex;
+            gap: 15px;
+        }
+
+        .card-number {
+            flex: 2;
+        }
+
+        .expiry-date,
+        .cvv {
+            flex: 1;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .payment-method.active {
+            border-color: #088178;
+            background-color: #f8f8f8;
+        }
+
+        .payment-method img {
+            height: 30px;
+        }
+
+        .checkout-btn {
+            background-color: #088178;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #066a63;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            #pro-det {
+                padding: 30px 20px;
+                flex-direction: column;
+            }
+
+            #pro-det .single-img,
+            .product-details {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .product-details {
+                margin-top: 30px;
+            }
+
+            .card-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section id="pro-det">
+        <div class="single-img">
+            <img src="products/m4.webp" width="100%" id="main-img" alt="Product Image">
+            <div class="small-img-gc">
+                <div class="small-img-col">
+                    <img src="products/m4.webp" width="100%" class="small-img" alt="Product Image">
+                    <img src="products/m4.webp" width="100%" class="small-img" alt="Product Image">
+                    <img src="products/m4.webp" width="100%" class="small-img" alt="Product Image">
+                    <img src="products/m4.webp" width="100%" class="small-img" alt="Product Image">
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="product-details">
+            <h2>Apple MacBook Air 2025 13.6in M4 16GB 256GB - Midnight</h2>
+            <div class="price">$999.00</div>
+
+
+            <div class="payment-gateway">
+                <h3>Secure Checkout</h3>
+
+                <div class="payment-methods">
+                    <div class="payment-method active">
+                        <input type="radio" name="payment-type" id="credit-card" checked>
+                        <label for="credit-card">Credit Card</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio" name="payment-type" id="paypal">
+                        <label for="paypal">PayPal</label>
+                    </div>
+                </div>
+
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label for="cardholder">Cardholder Name</label>
+                        <input type="text" id="cardholder" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="card-details">
+                        <div class="form-group card-number">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                        </div>
+
+                        <div class="form-group expiry-date">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="text" id="expiry" placeholder="MM/YY" required>
+                        </div>
+
+                        <div class="form-group cvv">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="billing-address">Billing Address</label>
+                        <input type="text" id="billing-address" placeholder="123 Main St" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" placeholder="New York" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zip">ZIP Code</label>
+                        <input type="text" id="zip" placeholder="10001" required>
+                    </div>
+
+                    <button type="submit" class="checkout-btn">Pay $78.00</button>
+
+                    <div class="secure-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                        </svg>
+                        Secure Payment - 256-bit SSL Encryption
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Image gallery functionality
+        const mainImg = document.getElementById("main-img");
+        const smallImg = document.getElementsByClassName("small-img");
+
+        for (let i = 0; i < smallImg.length; i++) {
+            smallImg[i].onclick = function () {
+                mainImg.src = this.src;
+            }
+        }
+
+        // Payment method selection
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                // Remove active class from all methods
+                paymentMethods.forEach(m => m.classList.remove('active'));
+                // Add active class to clicked method
+                method.classList.add('active');
+                // Check the radio button
+                const radio = method.querySelector('input[type="radio"]');
+                radio.checked = true;
+            });
+        });
+
+        // Form submission
+        document.getElementById('payment-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Payment processed successfully! This is a demo.');
+
+        });
+    </script>
+</body>
+
+</html>
