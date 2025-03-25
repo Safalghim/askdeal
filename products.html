@@ -9,6 +9,30 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="logo.png">
     <script src="main.js" defer></script>
+    <script>
+        // JavaScript to handle Add to Cart functionality
+        function addToCart(productName, productPrice) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let product = { name: productName, price: productPrice };
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${productName} has been added to your cart.`);
+        }
+
+        function viewCart() {
+            // Display cart content when cart icon is clicked
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert("Your cart is empty.");
+            } else {
+                let cartContent = "Your Cart:\n";
+                cart.forEach(item => {
+                    cartContent += `${item.name} - £${item.price}\n`;
+                });
+                alert(cartContent);
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -47,14 +71,77 @@
             </button>
         </div>
     </nav>
-    <!-- Featured Products -->
+
+    <!-- Featured Products Section -->
     <h2>Check Out Our Other Products</h2>
     <div class="prod-container">
-        <!-- Products will be dynamically added here -->
+        <!-- Product Listing with Add to Cart button -->
+        <div class="product">
+            <img src="/products/f1.jpg" alt="Fashion Item 1">
+            <p>Price: £39</p>
+            <button onclick="addToCart('Fashion Item 1', 39)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/f2.jpg" alt="Fashion Item 2">
+            <p>Price: £49</p>
+            <button onclick="addToCart('Fashion Item 2', 49)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/f3.jpg" alt="Fashion Item 3">
+            <p>Price: £59</p>
+            <button onclick="addToCart('Fashion Item 3', 59)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/f4.jpg" alt="Fashion Item 4">
+            <p>Price: £69</p>
+            <button onclick="addToCart('Fashion Item 4', 69)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/f5.jpg" alt="Fashion Item 5">
+            <p>Price: £79</p>
+            <button onclick="addToCart('Fashion Item 5', 79)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/iphone10.webp" alt="iPhone 10">
+            <p>Price: £499</p>
+            <button onclick="addToCart('iPhone 10', 499)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/iphun12.webp" alt="iPhone 12">
+            <p>Price: £699</p>
+            <button onclick="addToCart('iPhone 12', 699)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/metaquest.webp" alt="Meta Quest">
+            <p>Price: £299</p>
+            <button onclick="addToCart('Meta Quest', 299)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/n1.jpg" alt="New Item 1">
+            <p>Price: £99</p>
+            <button onclick="addToCart('New Item 1', 99)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/n2.jpg" alt="New Item 2">
+            <p>Price: £109</p>
+            <button onclick="addToCart('New Item 2', 109)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/n3.jpg" alt="New Item 3">
+            <p>Price: £119</p>
+            <button onclick="addToCart('New Item 3', 119)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/n4.jpg" alt="New Item 4">
+            <p>Price: £129</p>
+            <button onclick="addToCart('New Item 4', 129)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="/products/n5.jpg" alt="New Item 5">
+            <p>Price: £139</p>
+            <button onclick="addToCart('New Item 5', 139)">Add to Cart</button>
+        </div>
     </div>
-
-
-
 
     <!-- Footer Section -->
     <footer>
