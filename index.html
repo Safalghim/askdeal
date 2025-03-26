@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="logo.png">
-    <script src="main.js" defer></script>
-    <script src="cart.js" defer></script>
+    <script src="cart.js" defer></script> <!-- Link to cart.js -->
 </head>
 
 <body>
@@ -40,6 +39,7 @@
             </button>
             <button class="cart-icon" onclick="viewCart()">
                 <i class="fa fa-shopping-cart"></i>
+                <span id="cart-count">0</span> <!-- Cart count -->
             </button>
         </div>
     </nav>
@@ -48,7 +48,7 @@
         <div class="product-showcase">
             <div class="product-container">
                 <div class="product-image-container">
-                    "product"><img src="/products/asuslaptop.jpg" alt="Asus Laptop" class="product-image">
+                    <img src="/products/asuslaptop.jpg" alt="Asus Laptop" class="product-image">
                     <div class="product-badge">New</div>
                 </div>
                 <div class="product-details">
@@ -58,7 +58,7 @@
                         <p>Experience high performance with the latest Asus Laptop.</p>
                         <p>Price: £899</p>
                         <div class="cta-container">
-                            <a href="payment.html" class="cta-button">Shop Now</a>
+                            <button class="cta-button" onclick="addToCart('Asus Laptop', 899)">Add to Cart</button> <!-- Add to Cart button -->
                         </div>
                     </div>
                 </div>
@@ -67,15 +67,13 @@
 
         <h2>Our Other Products</h2>
         <div class="prod-container">
-            <div class="product"><img src="/products/F1.png" alt="Fashion Item 1"><p>£39</p></div>
-            <div class="product"><img src="/products/F2.png" alt="Fashion Item 2"><p>£49</p></div>
-            <div class="product"><img src="/products/F3.png" alt="Fashion Item 3"><p>£59</p></div>
-            <div class="product"><img src="/products/F4.png" alt="Fashion Item 4"><p>£69</p></div>
-            <div class="product"><img src="/products/F5.png" alt="Fashion Item 5"><p>£79</p></div>
-            <div class="product"><img src="/products/P6.png" alt="iPhone 10"><p>£499</p></div>
-            <div class="product"><img src="/products/P7.png" alt="iPhone 12"><p>£699</p></div>
-            <div class="product"><img src="/products/P8.png" alt="Meta Quest"><p>£299</p></div>
-            <div class="product"><img src="/products/P9.png" alt="New Item 1"><p>£99</p></div>
+            <!-- Example Product (Add to Cart button added) -->
+            <div class="product">
+                <img src="/products/F1.png" alt="Fashion Item 1">
+                <p>£39</p>
+                <button onclick="addToCart('Fashion Item 1', 39)">Add to Cart</button>
+            </div>
+            <!-- More products can follow the same format as above -->
         </div>
     </section>
 
@@ -113,6 +111,55 @@
             <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // JavaScript functions to handle the cart functionality
+        function addToCart(productName, productPrice) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let product = { name: productName, price: productPrice };
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Update cart count
+            updateCartCount();
+
+            alert(`${productName} has been added to your cart.`);
+        }
+
+        function viewCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert("Your cart is empty.");
+            } else {
+                let cartContent = "Your Cart:\n";
+                cart.forEach((item, index) => {
+                    cartContent += `${item.name} - £${item.price} (Remove) \n`;
+                });
+                cartContent += "\nClick 'OK' to remove items from the cart.";
+                let confirmRemove = confirm(cartContent);
+                
+                if (confirmRemove) {
+                    removeFromCart();
+                }
+            }
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.getElementById('cart-count').innerText = cart.length;
+        }
+
+        function removeFromCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = []; // Empty the cart
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert("Your cart has been cleared.");
+        }
+
+        // Initial cart count update on page load
+        window.onload = updateCartCount;
+    </script>
 </body>
 
 </html>
