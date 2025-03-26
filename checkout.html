@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASKDEAL - Checkout</title>
+    <title>ASKDEAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -18,65 +18,64 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html">contact</a></li>
                 <li id="lg-bag"><a class="active" href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
                 <a href="#" id="close"><i class="fa fa-times"></i></a>
             </ul>
         </div>
     </section>
 
+</head>
+<body>
     <div class="checkout-form">
         <form action="/submit_payment" method="post" onsubmit="handleCheckout(event)">
-            <div class="billing-info">
-                <h3>Billing Address</h3>
-                <label for="fullname">Full Name</label>
-                <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
-
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="john@example.com" required>
-
-                <label for="address">Address</label>
-                <input type="text" id="address" name="address" placeholder="123 Main St" required>
-            </div>
-
-            <div class="payment-info">
-                <h3>Payment</h3>
-                <label for="cardname">Name on Card</label>
-                <input type="text" id="cardname" name="cardname" placeholder="John Doe" required>
-
-                <label for="cardnumber">Credit Card Number</label>
-                <input type="text" id="cardnumber" name="cardnumber" placeholder="1111-2222-3333-4444" required>
-
-                <label for="expmonth">Exp Month</label>
-                <input type="text" id="expmonth" name="expmonth" placeholder="MM" required>
-
-                <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="YYYY" required>
-
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="123" required>
-            </div>
-
-            <input type="submit" value="Continue to checkout">
+          <div class="billing-info">
+            <h3>Billing Address</h3>
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+          </div>
+          
+          <div class="payment-info">
+            <h3>Payment</h3>
+            <label for="cardname">Name on Card</label>
+            <input type="text" id="cardname" name="cardname" placeholder="John Doe" required>
+            
+            <label for="cardnumber">Credit Card Number</label>
+            <input type="text" id="cardnumber" name="cardnumber" placeholder="1111-2222-3333-4444" required>
+            
+            <label for="expmonth">Exp Month</label>
+            <input type="text" id="expmonth" name="expmonth" placeholder="MM" required>
+            
+            <label for="expyear">Exp Year</label>
+            <input type="text" id="expyear" name="expyear" placeholder="YYYY" required>
+            
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" name="cvv" placeholder="123" required>
+          </div>
+          
+          <input type="submit" value="Continue to checkout">
         </form>
-    </div>
-
-    <script>
-        // Function to handle the checkout confirmation
-        function handleCheckout(event) {
+      </div>
+      <script>
+          // Function to handle the checkout confirmation
+          function handleCheckout(event) {
             // Prevent the default form submission
             event.preventDefault();
-
+          
             // Perform your validation and payment processing here
             // ...
-
+          
             // If payment is successful, display the confirmation message
-            alert('Your payment is done. Thanks for shopping with ASKDEAL!');
+            alert('Your payment is done. Thanks for shopping with K and B store!');
           
             // You can redirect the user or perform other actions after payment
             // window.location.href = 'thank_you_page.html';
-        }
-    </script>
+          }
+          </script>
+      
+      </body>
+      </html>
 </body>
-
-</html>
