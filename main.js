@@ -156,6 +156,43 @@ function removeFromCart(id) {
   displayCart(); // Re-render the cart
 }
 
+// Function to handle the cart view logic
+function viewCart() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  if (cart.length === 0) {
+    alert("Your cart is empty.");
+  } else {
+    let cartContent = "Your Cart:\n";
+    cart.forEach((item, index) => {
+      cartContent += `${item.title || item.name} - £${item.price}\n`;
+    });
+    cartContent += "\nDo you want to proceed to checkout or clear the cart?";
+
+    let confirmCheckout = confirm(cartContent);
+
+    if (confirmCheckout) {
+      proceedToCheckout();
+    } else {
+      clearCart();
+    }
+  }
+}
+
+// Function to proceed to checkout (redirect to checkout page)
+function proceedToCheckout() {
+  alert("Proceeding to checkout...");
+  window.location.href = "checkout.html"; // Redirect to checkout page
+}
+
+// Function to clear the cart
+function clearCart() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart = []; // Empty the cart
+  localStorage.setItem('cart', JSON.stringify(cart));
+  displayCart(); // Update cart UI
+  alert("Your cart has been cleared.");
+}
+
 // Initialize on page load
 window.addEventListener("DOMContentLoaded", () => {
   api_data();
