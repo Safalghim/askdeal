@@ -176,6 +176,45 @@
             font-size: 14px;
         }
 
+        .cart-section {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #fff;
+            width: 300px;
+            height: 100%;
+            box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .cart-section h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .cart-item span {
+            font-size: 16px;
+        }
+
+        .close-cart-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            background-color: #fff;
+            border: none;
+        }
+
         @media (max-width: 768px) {
             #pro-det {
                 padding: 30px 20px;
@@ -213,13 +252,9 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-
         <div class="product-details">
             <h2>Apple MacBook Air 2025 13.6in M4 16GB 256GB - Midnight</h2>
             <div class="price">£999.00</div>
-
 
             <div class="payment-gateway">
                 <h3>Secure Checkout</h3>
@@ -273,20 +308,25 @@
                         <input type="text" id="zip" placeholder="10001" required>
                     </div>
 
-                    <button type="submit" class="checkout-btn">Pay £total bill</button>
+                    <button type="submit" class="checkout-btn">Pay £999.00</button>
 
                     <div class="secure-badge">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                        </svg>
                         Secure Payment - 256-bit SSL Encryption
                     </div>
                 </form>
             </div>
         </div>
     </section>
+
+    <!-- Cart Section -->
+    <div class="cart-section" id="cart-section">
+        <button class="close-cart-btn" id="close-cart-btn">×</button>
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <div class="cart-total">
+            <strong>Total: £<span id="cart-total">0.00</span></strong>
+        </div>
+    </div>
 
     <script>
         // Image gallery functionality
@@ -313,11 +353,50 @@
             });
         });
 
+        // View Cart
+        const viewCartBtn = document.createElement("button");
+        viewCartBtn.innerText = "View Cart";
+        document.body.appendChild(viewCartBtn);
+
+        viewCartBtn.addEventListener("click", () => {
+            const cartSection = document.getElementById("cart-section");
+            cartSection.style.display = "block";
+            loadCartItems();
+        });
+
+        const closeCartBtn = document.getElementById("close-cart-btn");
+        closeCartBtn.addEventListener("click", () => {
+            const cartSection = document.getElementById("cart-section");
+            cartSection.style.display = "none";
+        });
+
+        function loadCartItems() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById("cart-items");
+            const cartTotalElement = document.getElementById("cart-total");
+
+            cartItemsContainer.innerHTML = "";
+
+            let total = 0;
+            cart.forEach(item => {
+                const cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+                cartItem.innerHTML = `
+                    <span>${item.title || item.name}</span> 
+                    <span>£${item.price}</span>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+                total += item.price * item.quantity;
+            });
+
+            cartTotalElement.textContent = total.toFixed(2);
+        }
+
         // Form submission
         document.getElementById('payment-form').addEventListener('submit', function (e) {
             e.preventDefault();
-            alert('Payment processed successfully! This is a demo.');
-
+            alert("Thank you for your payment!");
+            // You can also redirect or display success messages here
         });
     </script>
 </body>
