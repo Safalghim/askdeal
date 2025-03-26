@@ -2,6 +2,13 @@
 const home_prod = document.querySelector(".prod-container");
 let data;
 
+// Sample fallback products array (You can customize this as needed)
+const products = [
+  { id: 1, title: 'Product 1', image: 'path/to/image1.jpg', price: 100, category: 'Category 1' },
+  { id: 2, title: 'Product 2', image: 'path/to/image2.jpg', price: 150, category: 'Category 2' },
+  // Add more fallback products if necessary
+];
+
 // Function to generate product HTML based on your template
 function generateProductHTML(product) {
   return `
@@ -30,6 +37,7 @@ function displayProducts(productsArray) {
   productsArray.slice(0, 6).forEach((product) => {
     home_prod.innerHTML += generateProductHTML(product);
   });
+  addEventListeners(); // Add event listeners after products are loaded
 }
 
 // Function to fetch data from API
@@ -48,9 +56,6 @@ async function api_data() {
     }));
 
     displayProducts(mappedData);
-
-    // Add event listeners to all product cards
-    addEventListeners();
   } catch (error) {
     console.error("Error fetching products:", error);
     // Fallback to local products if API fails
@@ -102,6 +107,7 @@ function addToCart(productId) {
     
     // Optionally, update the UI or alert the user
     alert(`${productToAdd.title || productToAdd.name} has been added to your cart.`);
+    displayCart(); // Update cart display immediately after adding the item
   }
 }
 
