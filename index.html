@@ -1,249 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ASKDEAL - Get The Best Offers In All Products At One Place</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="logo.png">
-    <script src="cart.js" defer></script>
-    <style>
-        /* Ensure images have a consistent size */
-        .product-image, .prod-container img {
-            width: 100%;
-            height: auto;
-            max-width: 300px;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* For product cards, to ensure consistent layout */
-        .product, .product-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            margin: 15px;
-        }
-
-        .prod-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,intial-scale=1.0">
+        <title>ASKDEAL</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+	<style>
+        body {
+            background-image: url('logo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
     </style>
-</head>
 
-<body>
-    <section class="welcomsec">
-        <h2>Welcome to ASKDEAL</h2>
-        <h3>Get The Best Offers In All Products At One Place</h3>
+    <section id="header">
+        <a href="#"><img src="logo.png" width="100" height="70" class="logo" alt="ASKDEAL Logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i><span class="badge" id="cart-badge">0</span></a></li> 
+            </ul>
+        </div>
     </section>
+    
+    <section id="hero">
+        <h4>Trade-in-offer</h4>
+        <h2>Super value deals</h2>
+        <h1>On all products</h1>
+        <P>Save more with coupons & up to 60% off! </P>
+        <button>Shop Now</button>
+    </section>
+    
+    <div id="notification" class="notification"></div>
 
-    <nav>
-        <h1 class="logo">ASKDEAL</h1>
-        <div class="nav-buttons">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="products.html" class="nav-link">Products</a>
-            <a href="cart.html" class="nav-link">view cart</a>
-            <a href="checkout.html" class="btn-checkout">Go to Checkout</a>
-            <a href="about.html" class="nav-link">About Us</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-        </div>
-        <div class="search-container">
-            <input type="text" placeholder="Search..." class="search-bar">
-            <button class="search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-        <div class="user-cart">
-            <button class="user-icon">
-                <a href="sign-in.html">
-                    <i class="fa fa-user"></i>
-                </a>
-            </button>
-            <button class="cart-icon" onclick="viewCart()">
-                <i class="fa fa-shopping-cart"></i>
-                <span id="cart-count">0</span>
-            </button>
-        </div>
-    </nav>
-
-    <section id="home" class="home active">
-        <div class="product-showcase">
-            <div class="product-container">
-                <div class="product-image-container">
-                    <img src="products/asuslaptop.jpg" alt="Asus Laptop" class="product-image">
-                    <div class="product-badge">New</div>
-                </div>
-                <div class="product-details">
-                    <h1 class="product-title">Asus Laptop</h1>
-                    <h3 class="product-subtitle">Powerful and Reliable</h3>
-                    <div class="product-description">
-                        <p>Experience high performance with the latest Asus Laptop.</p>
-                        <p>Price: £899</p>
-                        <div class="cta-container">
-                            <button class="cta-button" onclick="addToCart('Asus Laptop', 899)">Shop Now</button>
+    <section id="clothes" class="section-p1">
+        <h2>Mens Wear</h2>
+        <p>Summer Collection New modern Design</p>
+        <div class="pro-container">
+            <div class="pro">
+                <img src="products/asuslaptop.jpg" alt="Asus Laptop">
+                <div class="des">
+                    <h5>Asus Laptop</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
                         </div>
+                    </div>
+                    <h4>£899.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <h2>Our Other Products</h2>
-        <div class="prod-container">
-            <div class="product">
+            <div class="pro">
                 <img src="products/f1.jpg" alt="Beach Shirt">
-                <p>£39</p>
-                <button class="cta-button" onclick="addToCart('Beach Shirt', 39)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/f2.jpg" alt="Fashion Male Shirt">
-                <p>£49</p>
-                <button class="cta-button" onclick="addToCart('Fashion Male Shirt', 49)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/f3.jpg" alt="Male Shirt">
-                <p>£59</p>
-                <button class="cta-button" onclick="addToCart('Male Shirt', 59)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/f4.jpg" alt="Fashion Wear">
-                <p>£69</p>
-                <button class="cta-button" onclick="addToCart('Fashion Wear', 69)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/f5.jpg" alt="Fashion Wear">
-                <p>£79</p>
-                <button class="cta-button" onclick="addToCart('Fashion Wear', 79)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/f6.jpg" alt="Male Shirt">
-                <p>£89</p>
-                <button class="cta-button" onclick="addToCart('Male Shirt', 89)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/f7.jpg" alt="Male Comfort Wear">
-                <p>£99</p>
-                <button class="cta-button" onclick="addToCart('Male Comfort Wear', 99)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/f8.jpg" alt="Comfort Wear">
-                <p>£109</p>
-                <button class="cta-button" onclick="addToCart('Comfort Wear', 109)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/iphone10.webp" alt="iPhone 10">
-                <p>£999</p>
-                <button class="cta-button" onclick="addToCart('iPhone 10', 999)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/iphun12.webp" alt="iPhone 12">
-                <p>£1099</p>
-                <button class="cta-button" onclick="addToCart('iPhone 12', 1099)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/m4.jpg" alt="MacBook">
-                <p>£119</p>
-                <button class="cta-button" onclick="addToCart('MacBook', 119)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/metaquest.webp" alt="Meta Quest">
-                <p>£499</p>
-                <button class="cta-button" onclick="addToCart('Meta Quest', 499)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/n1.jpg" alt="Fashion Wear">
-                <p>£29</p>
-                <button class="cta-button" onclick="addToCart('Fashion Wear', 29)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/n2.jpg" alt="Fashion Wear">
-                <p>£39</p>
-                <button class="cta-button" onclick="addToCart('Fashion Wear', 39)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/n3.jpg" alt="Fashion Wear">
-                <p>£29</p>
-                <button class="cta-button" onclick="addToCart('Fashion Wear', 29)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/n4.jpg" alt="Fashion Wear">
-                <p>£39</p>
-                <button class="cta-button" onclick="addToCart('Fashion Wear', 39)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/n5.jpg" alt="Male Fashion Shirt">
-                <p>£49</p>
-                <button class="cta-button" onclick="addToCart('Male Fashion Shirt', 49)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/n6.jpg" alt="Half Pant for Men">
-                <p>£59</p>
-                <button class="cta-button" onclick="addToCart('Half Pant for Men', 59)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/n7.jpg" alt="Male Jacket">
-                <p>£69</p>
-                <button class="cta-button" onclick="addToCart('Male Jacket', 69)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/n8.jpg" alt="Half Shirt">
-                <p>£79</p>
-                <button class="cta-button" onclick="addToCart('Half Shirt', 79)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/ringbell.webp" alt="Ring Bell">
-                <p>£19</p>
-                <button class="cta-button" onclick="addToCart('Ring Bell', 19)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/watch.jpg" alt="Watch">
-                <p>£199</p>
-                <button class="cta-button" onclick="addToCart('Watch', 199)">Shop Now</button>
-            </div>
-            <div class="product">
-                <img src="products/wirlesskeybord.jpg" alt="Wireless Keyboard">
-                <p>£49</p>
-                <button class="cta-button" onclick="addToCart('Wireless Keyboard', 49)">Shop Now</button>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <h2>Quick Links</h2>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Categories</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h2>Contact Us</h2>
-                <p>Email: <a href="mailto:support@askdeal.com">support@askdeal.com</a></p>
-                <p>Phone: +44 7824 097509</p>
-                <p>Address: 123 Deal Street, London, UK</p>
-            </div>
-            <div class="footer-social">
-                <h2>Follow Us</h2>
-                <div class="social-icons">
-                    <a href="#" class="social-icon">Facebook</a>
-                    <a href="#" class="social-icon">Twitter</a>
-                    <a href="#" class="social-icon">Instagram</a>
-                    <a href="#" class="social-icon">LinkedIn</a>
+                <div class="des">
+                    <h5>Beach Shirt</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£39.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
-        </div>
-    </footer>
+            <div class="pro">
+                <img src="products/f2.jpg" alt="Fashion Male Shirt">
+                <div class="des">
+                    <h5>Fashion Male Shirt</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£49.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/f3.jpg" alt="Male Shirt">
+                <div class="des">
+                    <h5>Male Shirt</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£59.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/f4.jpg" alt="Fashion Wear">
+                <div class="des">
+                    <h5>Fashion Wear</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£69.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/f5.jpg" alt="Fashion Wear">
+                <div class="des">
+                    <h5>Fashion Wear</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£79.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/f6.jpg" alt="Male Shirt">
+                <div class="des">
+                    <h5>Male Shirt</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£89.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/f7.jpg" alt="Male Comfort Wear">
+                <div class="des">
+                    <h5>Male Comfort Wear</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£99.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/f8.jpg" alt="Comfort Wear">
+                <div class="des">
+                    <h5>Comfort Wear</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£109.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/iphone10.webp" alt="iPhone 10">
+                <div class="des">
+                    <h5>iPhone 10</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£999.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/iphun12.webp" alt="iPhone 12">
+                <div class="des">
+                    <h5>iPhone 12</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£1099.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/m4.jpg" alt="MacBook">
+                <div class="des">
+                    <h5>MacBook</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£119.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/metaquest.webp" alt="Meta Quest">
+                <div class="des">
+                    <h5>Meta Quest</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£499.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/n1.jpg" alt="Fashion Wear">
+                <div class="des">
+                    <h5>Fashion Wear</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£29.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/n2.jpg" alt="Fashion Wear">
+                <div class="des">
+                    <h5>Fashion Wear</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£39.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/n3.jpg" alt="Fashion Wear">
+                <div class="des">
+                    <h5>Fashion Wear</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£29.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/n4.jpg" alt="Fashion Wear">
+                <div class="des">
+                    <h5>Fashion Wear</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£39.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/n5.jpg" alt="Male Fashion Shirt">
+                <div class="des">
+                    <h5>Male Fashion Shirt</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£49.00</h4>
+                    <div class="cart">
+                        <a class="add-to-cart"><i class="fa-solid fa-cart-plus" style='font-size:28px'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pro">
+                <img src="products/n6.jpg" alt="Half Pant for Men">
+                <div class="des">
+                    <h5>Half Pant for Men</h5>
+                    <div class="star-rating">
+                        <div class="stars">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <h4>£59.00</h4>
+                    <div class="cart">
+                        <a class
+
+
+
+     <script>document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default behavior of anchor tag
+                    const product = this.closest('.pro');
+                    const productName = product.querySelector('h5').innerText;
+                    const productPrice = product.querySelector('h4').innerText;
+                    const productImage = product.querySelector('img').src;
+                    addToCart(productName, productPrice, productImage);
+                });
+            });
+        
+            function addToCart(name, price, image) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingProductIndex = cart.findIndex(item => item.name === name);
+                if (existingProductIndex !== -1) {
+                    cart[existingProductIndex].quantity++;
+                } else {
+                    cart.push({ name: name, price: price, quantity: 1, image: image });
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                console.log(`${name} added to cart.`);
+                window.dispatchEvent(new CustomEvent('cartUpdated')); // Notify that the cart has been updated
+                new Notification(`${name} added to cart.`); // Show a notification
+                updateCartBadge(); // Update the badge count
+            }
+        
+            // Function to update the cart badge
+            function updateCartBadge() {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+                let cartBadge = document.getElementById('cart-badge');
+                
+                if (totalQuantity > 0) {
+                    cartBadge.textContent = totalQuantity;
+                    cartBadge.style.display = 'block'; // Show the badge
+                } else {
+                    cartBadge.style.display = 'none'; // Hide the badge
+                }
+            }
+        
+            // Initialize the cart badge on page load
+            updateCartBadge();
+        });
+        </script>
+                 
+            
+            
+            
+        
+    </body>
+</html>
