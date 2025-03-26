@@ -62,7 +62,7 @@
 
     <script src="main.js"></script>
     <script>
-        // Function to display the cart
+        // Function to display the cart items
         function displayCart() {
             const cartItemsContainer = document.getElementById("cart-items");
             const totalPriceElement = document.getElementById("total-price");
@@ -98,16 +98,16 @@
             totalPriceElement.textContent = totalPrice.toFixed(2);
         }
 
-        // Function to remove product from cart
+        // Function to remove item from cart
         function removeFromCart(id) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            // Filter out the product that matches the given id
+            // Filter out the product with the matching id
             cart = cart.filter(item => item.id !== id);
-            localStorage.setItem('cart', JSON.stringify(cart)); // Save the updated cart
-            displayCart(); // Re-display the cart after removal
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
+            displayCart(); // Re-render the cart
         }
 
-        // Load the cart when the page loads
+        // Load the cart content when the page loads
         window.addEventListener("DOMContentLoaded", displayCart);
     </script>
 </body>
