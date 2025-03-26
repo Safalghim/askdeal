@@ -22,6 +22,7 @@
         <div class="nav-buttons">
             <a href="index.html" class="nav-link">Home</a>
             <a href="products.html" class="nav-link">Products</a>
+            <a href="cart.html" class="nav-link">view cart</a>
             <a href="about.html" class="nav-link">About Us</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
@@ -58,7 +59,7 @@
                         <p>Experience high performance with the latest Asus Laptop.</p>
                         <p>Price: £899</p>
                         <div class="cta-container">
-                            <button class="cta-button" onclick="addToCart('Asus Laptop', 899)">Add to Cart</button> <!-- Add to Cart button -->
+                            <button class="cta-button" onclick="addToCart('Asus Laptop', 899)">Shop Now</button> <!-- Shop Now button -->
                         </div>
                     </div>
                 </div>
@@ -67,11 +68,21 @@
 
         <h2>Our Other Products</h2>
         <div class="prod-container">
-            <!-- Example Product (Add to Cart button added) -->
+            <!-- Example Product (Shop Now button added) -->
             <div class="product">
                 <img src="/products/F1.png" alt="Fashion Item 1">
                 <p>£39</p>
-                <button onclick="addToCart('Fashion Item 1', 39)">Add to Cart</button>
+                <button class="cta-button" onclick="addToCart('Fashion Item 1', 39)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="/products/F2.png" alt="Fashion Item 2">
+                <p>£49</p>
+                <button class="cta-button" onclick="addToCart('Fashion Item 2', 49)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="/products/F3.png" alt="Fashion Item 3">
+                <p>£59</p>
+                <button class="cta-button" onclick="addToCart('Fashion Item 3', 59)">Shop Now</button>
             </div>
             <!-- More products can follow the same format as above -->
         </div>
