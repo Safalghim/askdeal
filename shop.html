@@ -13,10 +13,16 @@
         // JavaScript to handle Add to Cart functionality
         function addToCart(productName, productPrice) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let product = { name: productName, price: productPrice };
-            cart.push(product);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert(`${productName} has been added to your cart.`);
+            let existingProduct = cart.find(item => item.name === productName);
+
+            if (existingProduct) {
+                alert(`${productName} is already in your cart.`);
+            } else {
+                let product = { name: productName, price: productPrice };
+                cart.push(product);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(`${productName} has been added to your cart.`);
+            }
         }
 
         function viewCart() {
