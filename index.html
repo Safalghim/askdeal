@@ -76,7 +76,7 @@
         <div class="product-showcase">
             <div class="product-container">
                 <div class="product-image-container">
-                    <img src="/products/asuslaptop.jpg" alt="Asus Laptop" class="product-image">
+                    <img src="products/asuslaptop.jpg" alt="Asus Laptop" class="product-image">
                     <div class="product-badge">New</div>
                 </div>
                 <div class="product-details">
@@ -95,23 +95,63 @@
 
         <h2>Our Other Products</h2>
         <div class="prod-container">
-            <!-- Example Product (Shop Now button added) -->
+            <!-- Example Products -->
             <div class="product">
-                <img src="/products/F1.png" alt="Fashion Item 1">
+                <img src="products/f1.jpg" alt="Fashion Item 1">
                 <p>£39</p>
                 <button class="cta-button" onclick="addToCart('Fashion Item 1', 39)">Shop Now</button>
             </div>
             <div class="product">
-                <img src="/products/F2.png" alt="Fashion Item 2">
+                <img src="products/f2.jpg" alt="Fashion Item 2">
                 <p>£49</p>
                 <button class="cta-button" onclick="addToCart('Fashion Item 2', 49)">Shop Now</button>
             </div>
             <div class="product">
-                <img src="/products/F3.png" alt="Fashion Item 3">
+                <img src="products/f3.jpg" alt="Fashion Item 3">
                 <p>£59</p>
                 <button class="cta-button" onclick="addToCart('Fashion Item 3', 59)">Shop Now</button>
             </div>
-            <!-- More products can follow the same format as above -->
+            <div class="product">
+                <img src="products/f4.jpg" alt="Fashion Item 4">
+                <p>£69</p>
+                <button class="cta-button" onclick="addToCart('Fashion Item 4', 69)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/f5.jpg" alt="Fashion Item 5">
+                <p>£79</p>
+                <button class="cta-button" onclick="addToCart('Fashion Item 5', 79)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/f6.jpg" alt="Fashion Item 6">
+                <p>£89</p>
+                <button class="cta-button" onclick="addToCart('Fashion Item 6', 89)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/iphone10.webp" alt="iPhone 10">
+                <p>£999</p>
+                <button class="cta-button" onclick="addToCart('iPhone 10', 999)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/iphun12.webp" alt="iPhone 12">
+                <p>£1099</p>
+                <button class="cta-button" onclick="addToCart('iPhone 12', 1099)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/metaquest.webp" alt="Meta Quest">
+                <p>£499</p>
+                <button class="cta-button" onclick="addToCart('Meta Quest', 499)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/n1.jpg" alt="Product N1">
+                <p>£29</p>
+                <button class="cta-button" onclick="addToCart('Product N1', 29)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/n2.jpg" alt="Product N2">
+                <p>£39</p>
+                <button class="cta-button" onclick="addToCart('Product N2', 39)">Shop Now</button>
+            </div>
+            <!-- Continue adding other products similarly -->
         </div>
     </section>
 
@@ -167,46 +207,4 @@
         function viewCart() {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             if (cart.length === 0) {
-                alert("Your cart is empty.");
-            } else {
-                let cartContent = "Your Cart:\n";
-                cart.forEach((item, index) => {
-                    cartContent += `${item.name} - £${item.price}\n`;
-                });
-                cartContent += "\nClick 'OK' to proceed to checkout or 'Cancel' to clear the cart.";
-
-                let confirmCheckout = confirm(cartContent);
-
-                if (confirmCheckout) {
-                    proceedToCheckout();
-                } else {
-                    clearCart();
-                }
-            }
-        }
-
-        function updateCartCount() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            document.getElementById('cart-count').innerText = cart.length;
-        }
-
-        function proceedToCheckout() {
-            // You can implement a redirect to checkout page or any other checkout-related action
-            alert("Proceeding to checkout...");
-            window.location.href = "checkout.html"; // Redirect to checkout page
-        }
-
-        function clearCart() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart = []; // Empty the cart
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            alert("Your cart has been cleared.");
-        }
-
-        // Initial cart count update on page load
-        window.onload = updateCartCount;
-    </script>
-</body>
-
-</html>
+                alert("Your cart
