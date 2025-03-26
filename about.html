@@ -8,6 +8,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" defer></script>
+    <script>
+        // JavaScript function for viewing cart
+        function viewCart() {
+            // Retrieve cart data from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert("Your cart is empty.");
+            } else {
+                let cartContent = "Your Cart:\n";
+                cart.forEach(item => {
+                    cartContent += `${item.name} - £${item.price}\n`;
+                });
+                alert(cartContent);
+            }
+        }
+    </script>
 </head>
 
 <body>
