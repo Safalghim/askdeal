@@ -49,7 +49,7 @@
         <div class="product-showcase">
             <div class="product-container">
                 <div class="product-image-container">
-                    <img src="/products/asuslaptop.jpg" alt="Asus Laptop" class="product-image">
+                    <img src="products/asuslaptop.jpg" alt="Asus Laptop" class="product-image">
                     <div class="product-badge">New</div>
                 </div>
                 <div class="product-details">
@@ -68,23 +68,67 @@
 
         <h2>Our Other Products</h2>
         <div class="prod-container">
-            <!-- Example Product (Shop Now button added) -->
+            <!-- Fetch and display all products dynamically -->
             <div class="product">
-                <img src="/products/F1.png" alt="Fashion Item 1">
+                <img src="products/f1.jpg" alt="Fashion Item 1">
                 <p>£39</p>
                 <button class="cta-button" onclick="addToCart('Fashion Item 1', 39)">Shop Now</button>
             </div>
             <div class="product">
-                <img src="/products/F2.png" alt="Fashion Item 2">
+                <img src="products/f2.jpg" alt="Fashion Item 2">
                 <p>£49</p>
                 <button class="cta-button" onclick="addToCart('Fashion Item 2', 49)">Shop Now</button>
             </div>
             <div class="product">
-                <img src="/products/F3.png" alt="Fashion Item 3">
+                <img src="products/f3.jpg" alt="Fashion Item 3">
                 <p>£59</p>
                 <button class="cta-button" onclick="addToCart('Fashion Item 3', 59)">Shop Now</button>
             </div>
-            <!-- More products can follow the same format as above -->
+            <div class="product">
+                <img src="products/f4.jpg" alt="Fashion Item 4">
+                <p>£69</p>
+                <button class="cta-button" onclick="addToCart('Fashion Item 4', 69)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/f5.jpg" alt="Fashion Item 5">
+                <p>£79</p>
+                <button class="cta-button" onclick="addToCart('Fashion Item 5', 79)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/iphone10.webp" alt="Product 1">
+                <p>£499</p>
+                <button class="cta-button" onclick="addToCart('Product 1', 499)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/iphun12.webp" alt="Product 2">
+                <p>£699</p>
+                <button class="cta-button" onclick="addToCart('Product 2', 699)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/m4.jpg" alt="Product 3">
+                <p>£299</p>
+                <button class="cta-button" onclick="addToCart('Product 3', 299)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/metaquest.webp" alt="Product 4">
+                <p>£99</p>
+                <button class="cta-button" onclick="addToCart('Product 4', 99)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/ringbell.webp" alt="Product 5">
+                <p>£109</p>
+                <button class="cta-button" onclick="addToCart('Product 5', 109)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/watch.jpg" alt="Product 6">
+                <p>£119</p>
+                <button class="cta-button" onclick="addToCart('Product 6', 119)">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/wirlesskeybord.jpg" alt="Product 7">
+                <p>£129</p>
+                <button class="cta-button" onclick="addToCart('Product 7', 129)">Shop Now</button>
+            </div>
         </div>
     </section>
 
@@ -144,13 +188,13 @@
             } else {
                 let cartContent = "Your Cart:\n";
                 cart.forEach((item, index) => {
-                    cartContent += `${item.name} - £${item.price} (Remove) \n`;
+                    cartContent += `${item.name} - £${item.price} \n`;
                 });
-                cartContent += "\nClick 'OK' to remove items from the cart.";
-                let confirmRemove = confirm(cartContent);
+                cartContent += "\nClick 'OK' to proceed with checkout.";
+                let confirmCheckout = confirm(cartContent);
                 
-                if (confirmRemove) {
-                    removeFromCart();
+                if (confirmCheckout) {
+                    window.location.href = "cart.html"; // Redirect to cart page
                 }
             }
         }
@@ -158,14 +202,6 @@
         function updateCartCount() {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             document.getElementById('cart-count').innerText = cart.length;
-        }
-
-        function removeFromCart() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart = []; // Empty the cart
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            alert("Your cart has been cleared.");
         }
 
         // Initial cart count update on page load
