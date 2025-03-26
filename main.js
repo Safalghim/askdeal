@@ -6,9 +6,7 @@ let data;
 function generateProductHTML(product) {
   return `
     <div class="prod fadeIn" data-id="${product.id}">
-      <img src="${product.image || product.src}" alt="${
-    product.title || product.name
-  }">
+      <img src="${product.image || product.src}" alt="${product.title || product.name}">
       <div class="des">
         <span>${product.brand || product.category || "Brand"}</span>
         <h5>${product.title || product.name}</h5>
@@ -81,7 +79,29 @@ function addToCart(productId) {
 
   if (productToAdd) {
     console.log(`Added to cart: ${productToAdd.title || productToAdd.name}`);
-    // Here you would typically update a cart object and UI
+    
+    // Retrieve cart from localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Check if the product already exists in the cart
+    const existingProductIndex = cart.findIndex(
+      (product) => product.id === productToAdd.id
+    );
+
+    if (existingProductIndex > -1) {
+      // Update the product quantity if it already exists in the cart
+      cart[existingProductIndex].quantity += 1;
+    } else {
+      // Add the product to the cart with quantity 1
+      productToAdd.quantity = 1;
+      cart.push(productToAdd);
+    }
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Optionally, update the UI or alert the user
+    alert(`${productToAdd.title || productToAdd.name} has been added to your cart.`);
   }
 }
 
