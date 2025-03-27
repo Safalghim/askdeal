@@ -2,80 +2,146 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASKDEAL</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASKDEAL - Checkout</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <section id="header">
-        <a href="#"><img src="logo.png" width="100" height="70" class="logo" alt="ASKDEAL Logo"></a>
-        <div>
-            <ul id="navbar">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">contact</a></li>
-                <li id="lg-bag"><a class="active" href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                <a href="#" id="close"><i class="fa fa-times"></i></a>
-            </ul>
-        </div>
-    </section>
+  <section class="welcomsec">
+    <h2>Welcome to ASKDEAL</h2>
+    <h3>Get The Best Offers In All Products At One Place</h3>
+  </section>
 
-</head>
-<body>
-    <div class="checkout-form">
-        <form action="/submit_payment" method="post" onsubmit="handleCheckout(event)">
-          <div class="billing-info">
-            <h3>Billing Address</h3>
-            <label for="fullname">Full Name</label>
-            <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
-            
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="john@example.com" required>
-          </div>
-          
-          <div class="payment-info">
-            <h3>Payment</h3>
-            <label for="cardname">Name on Card</label>
-            <input type="text" id="cardname" name="cardname" placeholder="John Doe" required>
-            
-            <label for="cardnumber">Credit Card Number</label>
-            <input type="text" id="cardnumber" name="cardnumber" placeholder="1111-2222-3333-4444" required>
-            
-            <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="MM" required>
-            
-            <label for="expyear">Exp Year</label>
-            <input type="text" id="expyear" name="expyear" placeholder="YYYY" required>
-            
-            <label for="cvv">CVV</label>
-            <input type="text" id="cvv" name="cvv" placeholder="123" required>
-          </div>
-          
-          <input type="submit" value="Continue to checkout">
-        </form>
+  <div class="checkout-form">
+    <form action="/submit_payment" method="post" onsubmit="handleCheckout(event)">
+      <div class="billing-info">
+        <h3>Billing Address</h3>
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="john@example.com" required>
       </div>
-      <script>
-          // Function to handle the checkout confirmation
-          function handleCheckout(event) {
-            // Prevent the default form submission
-            event.preventDefault();
-          
-            // Perform your validation and payment processing here
-            // ...
-          
-            // If payment is successful, display the confirmation message
-            alert('Your payment is done. Thanks for shopping with K and B store!');
-          
-            // You can redirect the user or perform other actions after payment
-            // window.location.href = 'thank_you_page.html';
-          }
-          </script>
-      
-      </body>
-      </html>
+
+      <div class="payment-info">
+        <h3>Payment</h3>
+        <label for="cardname">Name on Card</label>
+        <input type="text" id="cardname" name="cardname" placeholder="John Doe" required>
+
+        <label for="cardnumber">Credit Card Number</label>
+        <input type="text" id="cardnumber" name="cardnumber" placeholder="1111-2222-3333-4444" required
+          pattern="\d{4}-\d{4}-\d{4}-\d{4}">
+
+        <label for="expmonth">Exp Month</label>
+        <input type="text" id="expmonth" name="expmonth" placeholder="MM" required pattern="\d{2}">
+
+        <label for="expyear">Exp Year</label>
+        <input type="text" id="expyear" name="expyear" placeholder="YYYY" required pattern="\d{4}">
+
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="cvv" placeholder="123" required pattern="\d{3}">
+      </div>
+
+      <input type="submit" value="Continue to checkout">
+    </form>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Categories</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h2>Contact Us</h2>
+        <p>Email: <a href="mailto:support@askdeal.com">support@askdeal.com</a></p>
+        <p>Phone: +44 7824 097509</p>
+        <p>Address: 123 Deal Street, London, UK</p>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Function to handle the checkout confirmation
+    function handleCheckout(event) {
+      // Prevent the default form submission
+      event.preventDefault();
+
+      // Perform basic validation
+      const fullname = document.getElementById('fullname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const cardnumber = document.getElementById('cardnumber').value.trim();
+      const expmonth = document.getElementById('expmonth').value.trim();
+      const expyear = document.getElementById('expyear').value.trim();
+      const cvv = document.getElementById('cvv').value.trim();
+
+      if (!fullname || !email || !cardnumber || !expmonth || !expyear || !cvv) {
+        alert('Please fill in all the fields.');
+        return;
+      }
+
+      // Simulate payment processing
+      alert('Your payment is done. Thanks for shopping with ASKDEAL!');
+
+      // Redirect to a thank-you page
+      window.location.href = 'thank_you_page.html';
+    }
+  </script>
 </body>
+
+<style>
+  .checkout-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .checkout-form h3 {
+    margin-bottom: 10px;
+  }
+
+  .checkout-form label {
+    margin-top: 10px;
+    display: block;
+  }
+
+  .checkout-form input[type="text"],
+  .checkout-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .checkout-form input[type="submit"] {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+
+</html>

@@ -1,61 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width,intial-scale=1.0">
-        <title>ASKDEAL</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <section id="header">
-            <a href="#"><img src="img/logo.png" width="100" height="70" class="logo" alt="ASKDEAL Logo"></a>
-            <div>
-                <ul id="navbar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,intial-scale=1.0">
+    <title>ASKDEAL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<section class="welcomsec">
+    <h2>Welcome to ASKDEAL</h2>
+    <h3>Get The Best Offers In All Products At One Place</h3>
+</section>
+
+<body>
+    <section id="header"
+        style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background-color: #f8f9fa; border-bottom: 1px solid #ddd;">
+        <a href="#" style="text-decoration: none;">
+            <img src="img/logo.png" width="100" height="70" class="logo" alt="ASKDEAL Logo" style="display: block;">
+        </a>
+        <div>
+            <ul id="navbar"
+                style="list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; align-items: center;">
+                <li><a href="index.html" style="text-decoration: none; color: #333; font-weight: bold;">Home</a></li>
+                <li><a href="shop.html" style="text-decoration: none; color: #333; font-weight: bold;">Shop</a></li>
+                <li><a href="about.html" style="text-decoration: none; color: #333; font-weight: bold;">About</a></li>
+                <li><a href="contact.html" style="text-decoration: none; color: #333; font-weight: bold;">Contact</a>
+                </li>
+                <li><a class="active" href="cart.html"
+                        style="text-decoration: none; color: #007bff; font-size: 1.2em;"><i
+                            class="fa-solid fa-cart-shopping"></i></a></li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <div id="cart-container"></div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <h2>Quick Links</h2>
+                <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">contact</a></li>
-                    <li><a class="active" href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li> 
+                    <li><a href="products.html">Categories</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
                 </ul>
             </div>
+            <div class="footer-contact">
+                <h2>Contact Us</h2>
+                <p>Email: <a href="mailto:support@askdeal.com">support@askdeal.com</a></p>
+                <p>Phone: +44 7824 097509</p>
+                <p>Address: 123 Deal Street, London, UK</p>
+            </div>
 
-        </section>
-        <section><div id="cart-container"></div></section>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
         // List of products with their details
         const products = [
-         { name: "Asus Laptop", price: "£899.00", image: "products/asuslaptop.jpg" },
-         { name: "Beach Shirt", price: "£39.00", image: "products/f1.jpg" },
-         { name: "Fashion Male Shirt", price: "£49.00", image: "products/f2.jpg" },
-         { name: "Male Shirt", price: "£59.00", image: "products/f3.jpg" },
-         { name: "Fashion Wear", price: "£69.00", image: "products/f4.jpg" },
-         { name: "Fashion Wear", price: "£79.00", image: "products/f5.jpg" },
-         { name: "Male Shirt", price: "£89.00", image: "products/f6.jpg" },
-         { name: "Male Comfort Wear", price: "£99.00", image: "products/f7.jpg" },
-         { name: "Comfort Wear", price: "£109.00", image: "products/f8.jpg" },
-         { name: "iPhone 10", price: "£999.00", image: "products/iphone10.webp" },
-         { name: "iPhone 12", price: "£1099.00", image: "products/iphun12.webp" },
-         { name: "MacBook", price: "£119.00", image: "products/m4.jpg" },
-         { name: "Meta Quest", price: "£499.00", image: "products/metaquest.webp" },
-         { name: "Fashion Wear", price: "£29.00", image: "products/n1.jpg" },
-         { name: "Fashion Wear", price: "£39.00", image: "products/n2.jpg" },
-         { name: "Fashion Wear", price: "£29.00", image: "products/n3.jpg" },
-         { name: "Fashion Wear", price: "£39.00", image: "products/n4.jpg" },
-         { name: "Male Fashion Shirt", price: "£49.00", image: "products/n5.jpg" },
-         { name: "Half Pant for Men", price: "£59.00", image: "products/n6.jpg" },
-         { name: "Male Jacket", price: "£69.00", image: "products/n7.jpg" },
-         { name: "Half Shirt", price: "£79.00", image: "products/n8.jpg" },
-         { name: "Ring Bell", price: "£19.00", image: "products/ringbell.webp" },
-         { name: "Watch", price: "£199.00", image: "products/watch.jpg" },
-         { name: "Wireless Keyboard", price: "£49.00", image: "products/wirlesskeybord.jpg" }
-           ];
+            { name: "Asus Laptop", price: "£899.00", image: "products/asuslaptop.jpg" },
+            { name: "Beach Shirt", price: "£39.00", image: "products/f1.jpg" },
+            { name: "Fashion Male Shirt", price: "£49.00", image: "products/f2.jpg" },
+            { name: "Male Shirt", price: "£59.00", image: "products/f3.jpg" },
+            { name: "Fashion Wear", price: "£69.00", image: "products/f4.jpg" },
+            { name: "Fashion Wear", price: "£79.00", image: "products/f5.jpg" },
+            { name: "Male Shirt", price: "£89.00", image: "products/f6.jpg" },
+            { name: "Male Comfort Wear", price: "£99.00", image: "products/f7.jpg" },
+            { name: "Comfort Wear", price: "£109.00", image: "products/f8.jpg" },
+            { name: "iPhone 10", price: "£999.00", image: "products/iphone10.webp" },
+            { name: "iPhone 12", price: "£1099.00", image: "products/iphun12.webp" },
+            { name: "MacBook", price: "£119.00", image: "products/m4.jpg" },
+            { name: "Meta Quest", price: "£499.00", image: "products/metaquest.webp" },
+            { name: "Fashion Wear", price: "£29.00", image: "products/n1.jpg" },
+            { name: "Fashion Wear", price: "£39.00", image: "products/n2.jpg" },
+            { name: "Fashion Wear", price: "£29.00", image: "products/n3.jpg" },
+            { name: "Fashion Wear", price: "£39.00", image: "products/n4.jpg" },
+            { name: "Male Fashion Shirt", price: "£49.00", image: "products/n5.jpg" },
+            { name: "Half Pant for Men", price: "£59.00", image: "products/n6.jpg" },
+            { name: "Male Jacket", price: "£69.00", image: "products/n7.jpg" },
+            { name: "Half Shirt", price: "£79.00", image: "products/n8.jpg" },
+            { name: "Ring Bell", price: "£19.00", image: "products/ringbell.webp" },
+            { name: "Watch", price: "£199.00", image: "products/watch.jpg" },
+            { name: "Wireless Keyboard", price: "£49.00", image: "products/wirlesskeybord.jpg" }
+        ];
 
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            window.addToCart = function(productName) {
+
+        document.addEventListener('DOMContentLoaded', function () {
+            window.addToCart = function (productName) {
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 const productToAdd = products.find(product => product.name === productName);
                 if (productToAdd) {
@@ -73,8 +114,8 @@
                     console.error('Product not found');
                 }
             }
-        
-            window.removeFromCart = function(productName) {
+
+            window.removeFromCart = function (productName) {
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 const existingProductIndex = cart.findIndex(item => item.name === productName);
                 if (existingProductIndex !== -1) {
@@ -88,18 +129,18 @@
                 console.log(`${productName} removed from cart.`);
                 window.dispatchEvent(new CustomEvent('cartUpdated'));
             }
-        
+
             function updateCartUI() {
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 let cartContainer = document.querySelector('#cart-container');
                 cartContainer.innerHTML = '';
                 let total = 0;
-        
+
                 cart.forEach((item, index) => {
                     let price = parseFloat(item.price.replace('£', ''));
                     let itemTotal = price * item.quantity;
                     total += itemTotal;
-        
+
                     let cartItem = document.createElement('div');
                     cartItem.className = 'cart-item';
                     cartItem.innerHTML = `
@@ -117,25 +158,25 @@
                     `;
                     cartContainer.appendChild(cartItem);
                 });
-        
+
                 let totalElement = document.createElement('div');
                 totalElement.className = 'cart-total';
                 totalElement.innerHTML = `<h4>Total: £${total.toFixed(2)}</h4>`;
                 cartContainer.appendChild(totalElement);
-        
+
                 let checkoutButton = document.createElement('button');
                 checkoutButton.id = 'checkout-button';
                 checkoutButton.innerText = 'Checkout';
-                checkoutButton.addEventListener('click', function() {
+                checkoutButton.addEventListener('click', function () {
                     window.location.href = 'checkout.html';
                 });
                 cartContainer.appendChild(checkoutButton);
             }
-        
+
             updateCartUI();
             window.addEventListener('cartUpdated', updateCartUI);
         });
-        </script>
-</body> 
+    </script>
+</body>
 
 </html>

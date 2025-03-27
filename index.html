@@ -5,13 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ASKDEAL - Get The Best Offers In All Products At One Place</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="logo.png">
     <script src="cart.js" defer></script>
     <style>
         /* Ensure images have a consistent size */
-        .product-image, .prod-container img {
+        .product-image,
+        .prod-container img {
             width: 100%;
             height: auto;
             max-width: 300px;
@@ -21,7 +22,8 @@
         }
 
         /* For product cards, to ensure consistent layout */
-        .product, .product-container {
+        .product,
+        .product-container {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -48,8 +50,8 @@
         <div class="nav-buttons">
             <a href="index.html" class="nav-link">Home</a>
             <a href="products.html" class="nav-link">Products</a>
-            <!-- <a href="cart.html" class="nav-link">view cart</a> -->
-            <!-- <a href="checkout.html" class="btn-checkout">Go to Checkout</a> -->
+            <a href="cart.html" class="nav-link">view cart</a>
+            <a href="checkout.html" class="btn-checkout">Go to Checkout</a>
             <a href="about.html" class="nav-link">About Us</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
@@ -233,15 +235,7 @@
                 <p>Phone: +44 7824 097509</p>
                 <p>Address: 123 Deal Street, London, UK</p>
             </div>
-            <div class="footer-social">
-                <h2>Follow Us</h2>
-                <div class="social-icons">
-                    <a href="#" class="social-icon">Facebook</a>
-                    <a href="#" class="social-icon">Twitter</a>
-                    <a href="#" class="social-icon">Instagram</a>
-                    <a href="#" class="social-icon">LinkedIn</a>
-                </div>
-            </div>
+
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
@@ -279,49 +273,49 @@
         }
 
         // Initialize cart count on page load
-        window.onload = function() {
+        window.onload = function () {
             updateCartCount();
         };
     </script>
 </body>
 
 </html>
-  
-     <script>
-        // JavaScript functions to handle the cart functionality
-        function addToCart(productName, productPrice) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let product = { name: productName, price: productPrice };
-            cart.push(product);
-            localStorage.setItem('cart', JSON.stringify(cart));
 
-            // Update cart count
-            updateCartCount();
+<script>
+    // JavaScript functions to handle the cart functionality
+    function addToCart(productName, productPrice) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let product = { name: productName, price: productPrice };
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
 
-            alert(`${productName} has been added to your cart.`);
+        // Update cart count
+        updateCartCount();
+
+        alert(`${productName} has been added to your cart.`);
+    }
+
+    function viewCart() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart.length === 0) {
+            alert("Your cart is empty.");
+        } else {
+            // Display the cart items
+            let cartItems = cart.map(item => `${item.name} - £${item.price}`).join('\n');
+            alert(`Your Cart:\n\n${cartItems}`);
         }
+    }
 
-        function viewCart() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            if (cart.length === 0) {
-                alert("Your cart is empty.");
-            } else {
-                // Display the cart items
-                let cartItems = cart.map(item => `${item.name} - £${item.price}`).join('\n');
-                alert(`Your Cart:\n\n${cartItems}`);
-            }
-        }
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        document.getElementById('cart-count').textContent = cart.length;
+    }
 
-        function updateCartCount() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            document.getElementById('cart-count').textContent = cart.length;
-        }
-
-        // Initialize cart count on page load
-        window.onload = function() {
-            updateCartCount();
-        };
-    </script>
+    // Initialize cart count on page load
+    window.onload = function () {
+        updateCartCount();
+    };
+</script>
 </body>
 
 </html>

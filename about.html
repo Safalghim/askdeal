@@ -11,67 +11,77 @@
 </head>
 
 <body>
-    <section id="header">
-        <a href="#"><img src="logo.png" width="100" height="70" class="logo" alt="ASKDEAL Logo"></a>
-        <div>
-            <ul id="navbar">
-                <li><a href="askdeal">Home</a></li>
-                <li><a href="products">Products</a></li>
-                <li><a class="active" href="about.html">About Us</a></li>
-            </ul>
-        </div>
+    <section class="welcomsec">
+        <h2>Welcome to ASKDEAL</h2>
+        <h3>Get The Best Offers In All Products At One Place</h3>
     </section>
 
-    <section id="about-head" class="section-p1">
+    <nav>
+        <h1 class="logo">ASKDEAL</h1>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="products.html" class="nav-link">Products</a>
+            <!-- <a href="cart.html" class="nav-link">view cart</a> -->
+            <!-- <a href="checkout.html" class="btn-checkout">Go to Checkout</a> -->
+            <a href="about.html" class="nav-link">About Us</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="user-cart">
+            <button class="user-icon">
+                <a href="sign-in.html">
+                    <i class="fa fa-user"></i>
+                </a>
+            </button>
+            <button class="cart-icon" onclick="viewCart()">
+                <i class="fa fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <section id="about-head" class="section-p1"
+        style="background-color: #f9f9f9; padding: 40px; text-align: center; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
         <div>
-            <h2>About ASKDEAL</h2>
-            <p>
+            <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 20px;">About ASKDEAL</h2>
+            <p style="font-size: 1.2rem; color: #555; line-height: 1.8; margin-bottom: 30px;">
                 ASKDEAL is your one-stop destination for all shopping needs. We offer a
                 variety of products at unbeatable prices, from the latest gadgets to
                 fashionable clothing. Enjoy seamless shopping with secure payment
                 methods and fast delivery.
             </p>
             <br><br>
-            <marquee backgroundcolor="#ccc" loop="-1" scrollamount="-5" width="100%">
+            <marquee style="background-color: #eee; color: #333; padding: 10px; border-radius: 5px;" loop="-1"
+                scrollamount="5" width="100%">
                 ASKDEAL, your premier destination for unbeatable offers and top-quality products!
             </marquee>
         </div>
     </section>
 
-    <footer class="section-p1">
-        <div class="col">
-            <img class="ASKDEAL logo" src="logo.png" width="100" height="70" alt="ASKDEAL Logo">
-            <h4>Contact</h4>
-            <p><strong>Phone: </strong> +44 7824 097509</p>
-            <p><strong>Hours: </strong> 10:00 - 17:00, Mon - Sat</p>
-            <div class="follow">
-                <h4>Follow Us</h4>
-                <div class="icon">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-linkedin"></i>
-                </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Categories</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
             </div>
+            <div class="footer-contact">
+                <h2>Contact Us</h2>
+                <p>Email: <a href="mailto:support@askdeal.com">support@askdeal.com</a></p>
+                <p>Phone: +44 7824 097509</p>
+                <p>Address: 123 Deal Street, London, UK</p>
+            </div>
+
         </div>
-        <div class="col">
-            <h4>About</h4>
-            <a href="#">About Us</a>
-            <a href="#">Delivery Information</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Contact Us</a>
-        </div>
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="#">Sign In</a>
-            <a href="#">View Cart</a>
-            <a href="#">My Wishlist</a>
-            <a href="#">Track My Order</a>
-            <a href="#">Help</a>
-        </div>
-        <div class="copyright">
-            <p>© 2025, ASKDEAL - Ecommerce Website and Mobile Application</p>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
         </div>
     </footer>
 
@@ -79,3 +89,4 @@
 </body>
 
 </html>
+</section>
