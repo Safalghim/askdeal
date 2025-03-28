@@ -3,51 +3,115 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,intial-scale=1.0">
-    <title>ASKDEAL</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASKDEAL - Your Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png">
+    <script src="cart.js" defer></script>
+    <style>
+        .cart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .cart-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .cart-item-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .cart-item-price {
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-summary {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .cart-summary h3 {
+            margin-bottom: 10px;
+        }
+
+        .checkout-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .checkout-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-<section class="welcomsec">
-    <h2>Welcome to ASKDEAL</h2>
-    <h3>Get The Best Offers In All Products At One Place</h3>
-</section>
 
 <body>
-
     <nav>
         <h1 class="logo">ASKDEAL</h1>
         <div class="nav-buttons">
             <a href="index.html" class="nav-link">Home</a>
             <a href="products.html" class="nav-link">Products</a>
-            <a href="cart.html" class="nav-link">view cart</a>
+            <a href="cart.html" class="nav-link active">View Cart</a>
             <a href="checkout.html" class="btn-checkout">Go to Checkout</a>
             <a href="about.html" class="nav-link">About Us</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
-        <div class="search-container">
-            <input type="text" placeholder="Search..." class="search-bar">
-            <button class="search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-        <div class="user-cart">
-            <button class="user-icon">
-                <a href="sign-in.html">
-                    <i class="fa fa-user"></i>
-                </a>
-            </button>
-            <button class="cart-icon" onclick="viewCart()">
-                <i class="fa fa-shopping-cart"></i>
-                <span id="cart-count">0</span>
-            </button>
-        </div>
     </nav>
 
-    <section>
-        <div id="cart-container"></div>
-    </section>
+    <div class="cart-container">
+        <h2 class="cart-header">Your Shopping Cart</h2>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-summary">
+            <h3>Total: £<span id="cart-total">0</span></h3>
+            <button class="checkout-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -69,7 +133,6 @@
                 <p>Phone: +44 7824 097509</p>
                 <p>Address: 123 Deal Street, London, UK</p>
             </div>
-
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
@@ -77,116 +140,45 @@
     </footer>
 
     <script>
-        // List of products with their details
-        const products = [
-            { name: "Asus Laptop", price: "£899.00", image: "products/asuslaptop.jpg" },
-            { name: "Beach Shirt", price: "£39.00", image: "products/f1.jpg" },
-            { name: "Fashion Male Shirt", price: "£49.00", image: "products/f2.jpg" },
-            { name: "Male Shirt", price: "£59.00", image: "products/f3.jpg" },
-            { name: "Fashion Wear", price: "£69.00", image: "products/f4.jpg" },
-            { name: "Fashion Wear", price: "£79.00", image: "products/f5.jpg" },
-            { name: "Male Shirt", price: "£89.00", image: "products/f6.jpg" },
-            { name: "Male Comfort Wear", price: "£99.00", image: "products/f7.jpg" },
-            { name: "Comfort Wear", price: "£109.00", image: "products/f8.jpg" },
-            { name: "iPhone 10", price: "£999.00", image: "products/iphone10.webp" },
-            { name: "iPhone 12", price: "£1099.00", image: "products/iphun12.webp" },
-            { name: "MacBook", price: "£119.00", image: "products/m4.jpg" },
-            { name: "Meta Quest", price: "£499.00", image: "products/metaquest.webp" },
-            { name: "Fashion Wear", price: "£29.00", image: "products/n1.jpg" },
-            { name: "Fashion Wear", price: "£39.00", image: "products/n2.jpg" },
-            { name: "Fashion Wear", price: "£29.00", image: "products/n3.jpg" },
-            { name: "Fashion Wear", price: "£39.00", image: "products/n4.jpg" },
-            { name: "Male Fashion Shirt", price: "£49.00", image: "products/n5.jpg" },
-            { name: "Half Pant for Men", price: "£59.00", image: "products/n6.jpg" },
-            { name: "Male Jacket", price: "£69.00", image: "products/n7.jpg" },
-            { name: "Half Shirt", price: "£79.00", image: "products/n8.jpg" },
-            { name: "Ring Bell", price: "£19.00", image: "products/ringbell.webp" },
-            { name: "Watch", price: "£199.00", image: "products/watch.jpg" },
-            { name: "Wireless Keyboard", price: "£49.00", image: "products/wirlesskeybord.jpg" }
-        ];
+        function loadCart() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            let total = 0;
 
+            cartItemsContainer.innerHTML = '';
+            cartItems.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <p class="cart-item-title">${item.name}</p>
+                        <p class="cart-item-price">£${item.price}</p>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button onclick="removeFromCart('${item.name}')">Remove</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+                total += item.price;
+            });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            window.addToCart = function (productName) {
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const productToAdd = products.find(product => product.name === productName);
-                if (productToAdd) {
-                    const existingProductIndex = cart.findIndex(item => item.name === productName);
-                    if (existingProductIndex !== -1) {
-                        cart[existingProductIndex].quantity++;
-                    } else {
-                        cart.push({ ...productToAdd, quantity: 1 });
-                    }
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                    updateCartUI();
-                    console.log(`${productName} added to cart.`);
-                    window.dispatchEvent(new CustomEvent('cartUpdated'));
-                } else {
-                    console.error('Product not found');
-                }
-            }
+            cartTotal.textContent = total.toFixed(2);
+        }
 
-            window.removeFromCart = function (productName) {
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const existingProductIndex = cart.findIndex(item => item.name === productName);
-                if (existingProductIndex !== -1) {
-                    cart[existingProductIndex].quantity--;
-                    if (cart[existingProductIndex].quantity === 0) {
-                        cart.splice(existingProductIndex, 1);
-                    }
-                }
-                localStorage.setItem('cart', JSON.stringify(cart));
-                updateCartUI();
-                console.log(`${productName} removed from cart.`);
-                window.dispatchEvent(new CustomEvent('cartUpdated'));
-            }
+        function removeFromCart(itemName) {
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            cartItems = cartItems.filter(item => item.name !== itemName);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            loadCart();
+        }
 
-            function updateCartUI() {
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                let cartContainer = document.querySelector('#cart-container');
-                cartContainer.innerHTML = '';
-                let total = 0;
+        function proceedToCheckout() {
+            window.location.href = 'checkout.html';
+        }
 
-                cart.forEach((item, index) => {
-                    let price = parseFloat(item.price.replace('£', ''));
-                    let itemTotal = price * item.quantity;
-                    total += itemTotal;
-
-                    let cartItem = document.createElement('div');
-                    cartItem.className = 'cart-item';
-                    cartItem.innerHTML = `
-                        <div class="product-info">
-                            <img src="${item.image}" alt="${item.name}">
-                            <h5>${item.name}</h5>
-                        </div>
-                        <div class="price-info">
-                            <p>Price: ${item.price}</p>
-                            <p>Quantity: ${item.quantity}</p>
-                            <p>Total: £${itemTotal.toFixed(2)}</p>
-                            <button onclick="removeFromCart('${item.name}')">Remove</button>
-                            <button onclick="addToCart('${item.name}')">Add More</button>
-                        </div>
-                    `;
-                    cartContainer.appendChild(cartItem);
-                });
-
-                let totalElement = document.createElement('div');
-                totalElement.className = 'cart-total';
-                totalElement.innerHTML = `<h4>Total: £${total.toFixed(2)}</h4>`;
-                cartContainer.appendChild(totalElement);
-
-                let checkoutButton = document.createElement('button');
-                checkoutButton.id = 'checkout-button';
-                checkoutButton.innerText = 'Checkout';
-                checkoutButton.addEventListener('click', function () {
-                    window.location.href = 'checkout.html';
-                });
-                cartContainer.appendChild(checkoutButton);
-            }
-
-            updateCartUI();
-            window.addEventListener('cartUpdated', updateCartUI);
-        });
+        document.addEventListener('DOMContentLoaded', loadCart);
     </script>
 </body>
 

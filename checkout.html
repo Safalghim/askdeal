@@ -2,146 +2,191 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASKDEAL - Checkout</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASKDEAL - Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png">
+    <style>
+        /* Add styles from cart.html for consistency */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .payment-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .payment-gateway {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-gateway h3 {
+            color: #088178;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e1e1e1;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .checkout-btn {
+            background-color: #088178;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #066a63;
+        }
+
+        .cart-summary {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .cart-summary h3 {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 
 <body>
-  <section class="welcomsec">
-    <h2>Welcome to ASKDEAL</h2>
-    <h3>Get The Best Offers In All Products At One Place</h3>
-  </section>
+    <nav>
+        <h1 class="logo">ASKDEAL</h1>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="products.html" class="nav-link">Products</a>
+            <a href="cart.html" class="nav-link">View Cart</a>
+            <a href="checkout.html" class="btn-checkout active">Checkout</a>
+            <a href="about.html" class="nav-link">About Us</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
 
-  <div class="checkout-form">
-    <form action="/submit_payment" method="post" onsubmit="handleCheckout(event)">
-      <div class="billing-info">
-        <h3>Billing Address</h3>
-        <label for="fullname">Full Name</label>
-        <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+    <div class="payment-container">
+        <h2 class="payment-header">Secure Checkout</h2>
+        <div class="payment-gateway">
+            <h3>Payment Details</h3>
+            <form id="payment-form">
+                <div class="form-group">
+                    <label for="cardholder">Cardholder Name</label>
+                    <input type="text" id="cardholder" placeholder="John Doe" required>
+                </div>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="john@example.com" required>
-      </div>
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                </div>
 
-      <div class="payment-info">
-        <h3>Payment</h3>
-        <label for="cardname">Name on Card</label>
-        <input type="text" id="cardname" name="cardname" placeholder="John Doe" required>
+                <div class="form-group">
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" placeholder="MM/YY" required>
+                </div>
 
-        <label for="cardnumber">Credit Card Number</label>
-        <input type="text" id="cardnumber" name="cardnumber" placeholder="1111-2222-3333-4444" required
-          pattern="\d{4}-\d{4}-\d{4}-\d{4}">
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123" required>
+                </div>
 
-        <label for="expmonth">Exp Month</label>
-        <input type="text" id="expmonth" name="expmonth" placeholder="MM" required pattern="\d{2}">
+                <div class="form-group">
+                    <label for="billing-address">Billing Address</label>
+                    <input type="text" id="billing-address" placeholder="123 Main St" required>
+                </div>
 
-        <label for="expyear">Exp Year</label>
-        <input type="text" id="expyear" name="expyear" placeholder="YYYY" required pattern="\d{4}">
+                <div class="cart-summary">
+                    <h3>Total: £<span id="cart-total">0.00</span></h3>
+                </div>
 
-        <label for="cvv">CVV</label>
-        <input type="text" id="cvv" name="cvv" placeholder="123" required pattern="\d{3}">
-      </div>
-
-      <input type="submit" value="Continue to checkout">
-    </form>
-  </div>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <h2>Quick Links</h2>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="products.html">Categories</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Service</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h2>Contact Us</h2>
-        <p>Email: <a href="mailto:support@askdeal.com">support@askdeal.com</a></p>
-        <p>Phone: +44 7824 097509</p>
-        <p>Address: 123 Deal Street, London, UK</p>
-      </div>
-
+                <button type="submit" class="checkout-btn">Pay Now</button>
+            </form>
+        </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
-    </div>
-  </footer>
 
-  <script>
-    // Function to handle the checkout confirmation
-    function handleCheckout(event) {
-      // Prevent the default form submission
-      event.preventDefault();
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Categories</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h2>Contact Us</h2>
+                <p>Email: <a href="mailto:support@askdeal.com">support@askdeal.com</a></p>
+                <p>Phone: +44 7824 097509</p>
+                <p>Address: 123 Deal Street, London, UK</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
+        </div>
+    </footer>
 
-      // Perform basic validation
-      const fullname = document.getElementById('fullname').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const cardnumber = document.getElementById('cardnumber').value.trim();
-      const expmonth = document.getElementById('expmonth').value.trim();
-      const expyear = document.getElementById('expyear').value.trim();
-      const cvv = document.getElementById('cvv').value.trim();
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartTotal = document.getElementById('cart-total');
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            let total = 0;
 
-      if (!fullname || !email || !cardnumber || !expmonth || !expyear || !cvv) {
-        alert('Please fill in all the fields.');
-        return;
-      }
+            cartItems.forEach(item => {
+                total += item.price * (item.quantity || 1);
+            });
 
-      // Simulate payment processing
-      alert('Your payment is done. Thanks for shopping with ASKDEAL!');
+            cartTotal.textContent = total.toFixed(2);
+        });
 
-      // Redirect to a thank-you page
-      window.location.href = 'thank_you_page.html';
-    }
-  </script>
+        document.getElementById('payment-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert("Thank you for your payment!");
+            localStorage.removeItem('cart');
+            window.location.href = 'index.html';
+        });
+    </script>
 </body>
-
-<style>
-  .checkout-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .checkout-form h3 {
-    margin-bottom: 10px;
-  }
-
-  .checkout-form label {
-    margin-top: 10px;
-    display: block;
-  }
-
-  .checkout-form input[type="text"],
-  .checkout-form input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  .checkout-form input[type="submit"] {
-    padding: 10px 20px;
-    margin-top: 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-</style>
 
 </html>

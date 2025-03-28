@@ -55,12 +55,7 @@
             <a href="about.html" class="nav-link">About Us</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
-        <div class="search-container">
-            <input type="text" placeholder="Search..." class="search-bar">
-            <button class="search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
+
         <div class="user-cart">
             <button class="user-icon">
                 <a href="sign-in.html">
@@ -241,81 +236,10 @@
             <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // JavaScript functions to handle the cart functionality
-        function addToCart(productName, productPrice) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let product = { name: productName, price: productPrice };
-            cart.push(product);
-            localStorage.setItem('cart', JSON.stringify(cart));
-
-            // Update cart count
-            updateCartCount();
-
-            alert(`${productName} has been added to your cart.`);
-        }
-
-        function viewCart() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            if (cart.length === 0) {
-                alert("Your cart is empty.");
-            } else {
-                // Display the cart items
-                let cartItems = cart.map(item => `${item.name} - £${item.price}`).join('\n');
-                alert(`Your Cart:\n\n${cartItems}`);
-            }
-        }
-
-        function updateCartCount() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            document.getElementById('cart-count').textContent = cart.length;
-        }
-
-        // Initialize cart count on page load
-        window.onload = function () {
-            updateCartCount();
-        };
-    </script>
 </body>
 
 </html>
 
-<script>
-    // JavaScript functions to handle the cart functionality
-    function addToCart(productName, productPrice) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let product = { name: productName, price: productPrice };
-        cart.push(product);
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        // Update cart count
-        updateCartCount();
-
-        alert(`${productName} has been added to your cart.`);
-    }
-
-    function viewCart() {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        if (cart.length === 0) {
-            alert("Your cart is empty.");
-        } else {
-            // Display the cart items
-            let cartItems = cart.map(item => `${item.name} - £${item.price}`).join('\n');
-            alert(`Your Cart:\n\n${cartItems}`);
-        }
-    }
-
-    function updateCartCount() {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        document.getElementById('cart-count').textContent = cart.length;
-    }
-
-    // Initialize cart count on page load
-    window.onload = function () {
-        updateCartCount();
-    };
-</script>
 </body>
 
 </html>

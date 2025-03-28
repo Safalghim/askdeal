@@ -1,51 +1,62 @@
 // cart.js
 
-// Function to add product to cart
+// Function to add a product to the cart
 function addToCart(productName, productPrice) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let product = { name: productName, price: productPrice };
-    cart.push(product);
-    localStorage.setItem('cart', JSON.stringify(cart));
+  // Retrieve the cart from localStorage or initialize an empty array
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Update cart count
-    updateCartCount();
+  // Create a product object
+  let product = { name: productName, price: productPrice };
 
-    alert(`${productName} has been added to your cart.`);
+  // Add the product to the cart
+  cart.push(product);
+
+  // Save the updated cart back to localStorage
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // Update the cart count displayed on the page
+  updateCartCount();
+
+  // Notify the user
+  alert(`${productName} has been added to your cart.`);
 }
 
-// Function to view cart
+// Function to view the cart
 function viewCart() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    if (cart.length === 0) {
-        alert("Your cart is empty.");
-    } else {
-        let cartContent = "Your Cart:\n";
-        cart.forEach((item, index) => {
-            cartContent += `${item.name} - £${item.price} (Remove) \n`;
-        });
-        cartContent += "\nClick 'OK' to remove items from the cart.";
-        let confirmRemove = confirm(cartContent);
-        
-        if (confirmRemove) {
-            removeFromCart();
-        }
-    }
+  // Retrieve the cart from localStorage or initialize an empty array
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (cart.length === 0) {
+    alert("Your cart is empty.");
+  } else {
+    // Build the cart content string
+
+    //// redirecting to cart.html
+    window.location.href = "cart.html";
+  }
 }
 
-// Function to update cart count
+// Function to update the cart count displayed on the page
 function updateCartCount() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    document.getElementById('cart-count').innerText = cart.length;
+  // Retrieve the cart from localStorage or initialize an empty array
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Update the cart count element
+  document.getElementById("cart-count").innerText = cart.length;
 }
 
-// Function to remove items from cart
+// Function to remove all items from the cart
 function removeFromCart() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart = []; // Empty the cart
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    alert("Your cart has been cleared.");
+  // Clear the cart
+  let cart = [];
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // Update the cart count displayed on the page
+  updateCartCount();
+
+  // Notify the user
+  alert("Your cart has been cleared.");
 }
 
-// Initialize cart count on page load
+// Initialize the cart count when the page loads
 window.onload = updateCartCount;
