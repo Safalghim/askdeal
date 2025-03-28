@@ -1,12 +1,12 @@
 // cart.js
 
 // Function to add a product to the cart
-function addToCart(productName, productPrice) {
+function addToCart(productName, productPrice, imgSrc) {
   // Retrieve the cart from localStorage or initialize an empty array
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   // Create a product object
-  let product = { name: productName, price: productPrice };
+  let product = { name: productName, price: productPrice, img: imgSrc };
 
   // Add the product to the cart
   cart.push(product);
@@ -29,9 +29,7 @@ function viewCart() {
   if (cart.length === 0) {
     alert("Your cart is empty.");
   } else {
-    // Build the cart content string
-
-    //// redirecting to cart.html
+    // Redirecting to cart.html
     window.location.href = "cart.html";
   }
 }

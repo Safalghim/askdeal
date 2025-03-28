@@ -35,12 +35,13 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
         }
 
         .cart-item img {
             width: 100px;
-            height: auto;
-            object-fit: contain;
+            height: 100px;
+            object-fit: cover;
             border-radius: 8px;
         }
 
@@ -63,6 +64,19 @@
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+
+        .cart-item-actions button {
+            padding: 5px 10px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-item-actions button:hover {
+            background-color: #c82333;
         }
 
         .cart-summary {
@@ -96,7 +110,6 @@
             <a href="index.html" class="nav-link">Home</a>
             <a href="products.html" class="nav-link">Products</a>
             <a href="cart.html" class="nav-link active">View Cart</a>
-            
             <a href="about.html" class="nav-link">About Us</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
@@ -151,13 +164,13 @@
                 const cartItem = document.createElement('div');
                 cartItem.classList.add('cart-item');
                 cartItem.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}">
+                    <img src="${item.img}" alt="${item.name}">
                     <div class="cart-item-details">
                         <p class="cart-item-title">${item.name}</p>
-                        <p class="cart-item-price">£${item.price}</p>
+                        <p class="cart-item-price">£${item.price.toFixed(2)}</p>
                     </div>
                     <div class="cart-item-actions">
-                        <button onclick="removeFromCart('${item.name}')">Remove</button>
+                        <button onclick="confirmRemoveFromCart('${item.name}')">Remove</button>
                     </div>
                 `;
                 cartItemsContainer.appendChild(cartItem);
@@ -165,6 +178,12 @@
             });
 
             cartTotal.textContent = total.toFixed(2);
+        }
+
+        function confirmRemoveFromCart(itemName) {
+            if (confirm(`Are you sure you want to remove "${itemName}" from your cart?`)) {
+                removeFromCart(itemName);
+            }
         }
 
         function removeFromCart(itemName) {
