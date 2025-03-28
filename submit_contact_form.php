@@ -1,5 +1,12 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Debugging: Check if POST request is received
+    if (!isset($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message'])) {
+        http_response_code(400);
+        echo "Bad Request: Missing fields.";
+        exit;
+    }
+
     // Retrieve and sanitize form data
     $name = trim(htmlspecialchars($_POST['name']));
     $email = trim(htmlspecialchars($_POST['email']));
@@ -8,12 +15,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate inputs
     if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+        http_response_code(400);
         echo "All fields are required.";
         exit;
     }
 
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        http_response_code(400);
         echo "Invalid email format.";
         exit;
     }
@@ -32,8 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Send email
     if (mail($to, $subject, $fullMessage, $headers)) {
+        http_response_code(200);
         echo "Message sent successfully.";
     } else {
+        http_response_code(500);
         echo "Failed to send message. Please try again.";
     }
 } else {
