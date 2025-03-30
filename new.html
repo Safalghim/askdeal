@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASKDEAL - Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section id="header">
+        <a href="#"><img src="logo.png" width="100" height="70" class="logo" alt="ASKDEAL Logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a class="active" href="contact.html">Contact</a></li>
+                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="form-details">
+        <form action="submit_contact_form.php" method="POST">
+            <span>LEAVE A MESSAGE</span>
+            <h2>Our Team will get to you in 12 hours</h2>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+            <button class="normal" type="submit">Submit</button>
+        </form>
+    </section>
+
+    <section class="welcomsec">
+        <h2>Welcome to ASKDEAL</h2>
+        <h3>Get The Best Offers In All Products At One Place</h3>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="askdeal-logo" src="logo.png" width="100" height="70" alt="ASKDEAL Logo">
+            <h4>Contact</h4>
+            <p><strong>Head of the Office:</strong> Safal Ghimire</p>
+            <p><strong>Phone:</strong> +44 7824 097509</p>
+            <p><strong>Branch Manager:</strong> Hari Thapa</p>
+            <p><strong>Phone:</strong> +44 7986 124578</p>
+            <p><strong>Hours:</strong> 10:00 - 17:00, Mon - Sat</p>
+
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icon">
+                    <a href="#" class="fa-brands fa-facebook"></a>
+                    <a href="#" class="fa-brands fa-instagram"></a>
+                    <a href="#" class="fa-brands fa-square-twitter"></a>
+                    <a href="#" class="fa-brands fa-youtube"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
