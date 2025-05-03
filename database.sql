@@ -53,6 +53,7 @@ CREATE TABLE Orders (
     TotalAmount DECIMAL(10,2) NOT NULL,
     OrderStatus ENUM('Pending', 'Shipped', 'Delivered', 'Cancelled') DEFAULT 'Pending',
     ShippingAddress TEXT NOT NULL,
+    DeliveredDate TIMESTAMP NULL,  -- Optional field for delivery timestamp
     FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
 );
 
@@ -71,9 +72,28 @@ CREATE TABLE OrderDetails (
 CREATE TABLE Payments (
     PaymentID INT AUTO_INCREMENT PRIMARY KEY,
     OrderID INT NOT NULL,
-    PaymentMethod ENUM('Credit Card', 'PayPal') NOT NULL,
+    PaymentMethod ENUM('Credit Card') NOT NULL,
     PaymentStatus ENUM('Pending', 'Completed', 'Failed') DEFAULT 'Pending',
     TransactionDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Amount DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON DELETE CASCADE
+);
+
+-- Wishlist Table
+CREATE TABLE Wishlist (
+    WishlistID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    ProductID INT NOT NULL,
+    AddedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE,
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE
+);
+
+-- Order History Table
+CREATE TABLE OrderHistory (
+    HistoryID INT AUTO_INCREMENT PRIMARY KEY,
+    OrderID INT NOT NULL,
+    Status ENUM('Pending', 'Shipped', 'Delivered', 'Cancelled') NOT NULL,
+    StatusChangeDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON DELETE CASCADE
 );
