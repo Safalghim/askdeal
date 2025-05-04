@@ -8,49 +8,57 @@
 <body>
     <h1>My Wishlist</h1>
     <div id="wishlist-items">
-        <!-- Wishlist items will be displayed here -->
+        <!-- Wishlist items will be shown here -->
     </div>
 
     <h2>Cart</h2>
     <div id="cart-items">
-        <!-- Cart items will be displayed here -->
+        <!-- Cart items will be shown here -->
     </div>
 
     <script>
-        // Function to get the current wishlist from localStorage
+        // Function to get the wishlist from localStorage
         function getWishlist() {
             return JSON.parse(localStorage.getItem('wishlist')) || [];
         }
 
-        // Function to save the wishlist to localStorage
-        function saveWishlist(wishlist) {
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        // Function to get the cart from localStorage
+        function getCart() {
+            return JSON.parse(localStorage.getItem('cart')) || [];
         }
 
-        // Function to add an item to the wishlist
-        function addToWishlist(productName, productPrice, imgSrc) {
+        // Function to add product to both the cart and wishlist
+        function addToCartAndWishlist(productName, productPrice, imgSrc) {
+            let cart = getCart();
             let wishlist = getWishlist();
 
-            // Check if the item is already in the wishlist
-            if (!wishlist.some(item => item.name === productName)) {
-                wishlist.push({ name: productName, price: productPrice, img: imgSrc });
-                saveWishlist(wishlist);
+            // Create a product object
+            let product = { name: productName, price: productPrice, img: imgSrc };
+
+            // Add to cart if not already there
+            if (!cart.some(item => item.name === productName)) {
+                cart.push(product);
+                localStorage.setItem('cart', JSON.stringify(cart));
             }
-        }
 
-        // Function to remove an item from the wishlist
-        function removeFromWishlist(productName) {
-            let wishlist = getWishlist();
-            wishlist = wishlist.filter(item => item.name !== productName);
-            saveWishlist(wishlist);
-            displayWishlist(); // Refresh the displayed wishlist
+            // Add to wishlist if not already there
+            if (!wishlist.some(item => item.name === productName)) {
+                wishlist.push(product);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            }
+
+            // Update the display of the cart and wishlist
+            updateWishlistDisplay();
+            updateCartDisplay();
+
+            alert(`${productName} has been added to both your cart and wishlist.`);
         }
 
         // Function to display the wishlist
-        function displayWishlist() {
+        function updateWishlistDisplay() {
             const wishlist = getWishlist();
             const container = document.getElementById('wishlist-items');
-            container.innerHTML = ''; // Clear current list
+            container.innerHTML = '';
 
             if (wishlist.length === 0) {
                 container.innerHTML = "<p>Your wishlist is empty.</p>";
@@ -60,30 +68,17 @@
                     div.innerHTML = `
                         <img src="${item.img}" alt="${item.name}" width="100">
                         <p>${item.name} - £${item.price}</p>
-                        <button onclick="removeFromWishlist('${item.name}')">Remove from Wishlist</button>
                     `;
                     container.appendChild(div);
                 });
             }
         }
 
-        // Function to add an item to the cart
-        function addToCart(productName, productPrice, imgSrc) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.push({ name: productName, price: productPrice, img: imgSrc });
-            localStorage.setItem('cart', JSON.stringify(cart));
-
-            // Also add the item to the wishlist automatically
-            addToWishlist(productName, productPrice, imgSrc);
-
-            alert(`${productName} has been added to your cart and wishlist.`);
-        }
-
-        // Function to display the cart items
-        function displayCart() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Function to display the cart
+        function updateCartDisplay() {
+            const cart = getCart();
             const container = document.getElementById('cart-items');
-            container.innerHTML = ''; // Clear current list
+            container.innerHTML = '';
 
             if (cart.length === 0) {
                 container.innerHTML = "<p>Your cart is empty.</p>";
@@ -99,10 +94,10 @@
             }
         }
 
-        // Display the wishlist and cart when the page loads
+        // Initialize both wishlist and cart displays on page load
         window.onload = function() {
-            displayWishlist();
-            displayCart();
+            updateWishlistDisplay();
+            updateCartDisplay();
         };
     </script>
 </body>
