@@ -1,12 +1,98 @@
--- Create database
-CREATE DATABASE mobile_app;
+CREATE DATABASE IF NOT EXISTS ASKDEAL;
+USE ASKDEAL;
 
--- Use the database
-USE mobile_app;
+-- Users Table
+CREATE TABLE IF NOT EXISTS Users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    FullName VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    UserRole ENUM('Buyer', 'Seller') NOT NULL,
+    SignUpDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    IsActive BOOLEAN DEFAULT TRUE
+);
 
--- Create table
-CREATE TABLE users (
-    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
-    email VARCHAR(50) NOT NULL
+-- User Permissions Table
+CREATE TABLE IF NOT EXISTS UserPermissions (
+    PermissionID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    PermissionLevel ENUM('Admin', 'User', 'Moderator') NOT NULL,
+    PermissionGranted TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
+);
+
+-- Products Table
+CREATE TABLE IF NOT EXISTS Products (
+    ProductID INT AUTO_INCREMENT PRIMARY KEY,
+    ProductName VARCHAR(255) NOT NULL,
+    Price DECIMAL(10,2) NOT NULL,
+    Stock INT NOT NULL,
+    SellerID INT NOT NULL,
+    Category VARCHAR(255),
+    DateListed TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (SellerID) REFERENCES Users(UserID) ON DELETE CASCADE
+);
+
+-- Cart Table
+CREATE TABLE IF NOT EXISTS Cart (
+    CartID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    ProductID INT NOT NULL,
+    Quantity INT NOT NULL DEFAULT 1,
+    AddedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE,
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE
+);
+
+-- Orders Table
+CREATE TABLE IF NOT EXISTS Orders (
+    OrderID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    OrderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    TotalAmount DECIMAL(10,2) NOT NULL,
+    OrderStatus ENUM('Pending', 'Shipped', 'Delivered', 'Cancelled') DEFAULT 'Pending',
+    ShippingAddress TEXT NOT NULL,
+    DeliveredDate TIMESTAMP NULL,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
+);
+
+-- Order Details Table
+CREATE TABLE IF NOT EXISTS OrderDetails (
+    OrderDetailID INT AUTO_INCREMENT PRIMARY KEY,
+    OrderID INT NOT NULL,
+    ProductID INT NOT NULL,
+    Quantity INT NOT NULL,
+    Subtotal DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON DELETE CASCADE,
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE
+);
+
+-- Payments Table
+CREATE TABLE IF NOT EXISTS Payments (
+    PaymentID INT AUTO_INCREMENT PRIMARY KEY,
+    OrderID INT NOT NULL,
+    PaymentMethod ENUM('Credit Card') NOT NULL,
+    PaymentStatus ENUM('Pending', 'Completed', 'Failed') DEFAULT 'Pending',
+    TransactionDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Amount DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON DELETE CASCADE
+);
+
+-- Wishlist Table
+CREATE TABLE IF NOT EXISTS Wishlist (
+    WishlistID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    ProductID INT NOT NULL,
+    AddedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE,
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE
+);
+
+-- Order History Table
+CREATE TABLE IF NOT EXISTS OrderHistory (
+    HistoryID INT AUTO_INCREMENT PRIMARY KEY,
+    OrderID INT NOT NULL,
+    Status ENUM('Pending', 'Shipped', 'Delivered', 'Cancelled') NOT NULL,
+    StatusChangeDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON DELETE CASCADE
 );
