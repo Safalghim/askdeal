@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="logo.png">
-    <script src="cart.js" defer></script> <!-- Link to the updated cart.js file -->
 </head>
 
 <body>
@@ -159,6 +158,33 @@
             <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Simple Cart Functionality
+        let cart = [];
+
+        // Add item to cart
+        function addToCart(name, price, image) {
+            const item = { name, price, image };
+            cart.push(item);
+            updateCartCount();
+        }
+
+        // Update cart count display
+        function updateCartCount() {
+            document.getElementById('cart-count').textContent = cart.length;
+        }
+
+        // View Cart function (simple alert for demo)
+        function viewCart() {
+            let cartContents = 'Your Cart:\n\n';
+            cart.forEach(item => {
+                cartContents += `${item.name} - £${item.price}\n`;
+            });
+            cartContents += `\nTotal items: ${cart.length}`;
+            alert(cartContents);
+        }
+    </script>
 </body>
 
 </html>
