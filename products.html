@@ -11,16 +11,16 @@
     <script src="main.js" defer></script>
     <script>
         // JavaScript to handle Add to Cart functionality
-        function addToCart(productName, productPrice) {
+        function addToCart(productName, productPrice, productImage) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let product = { name: productName, price: productPrice };
+            let product = { name: productName, price: productPrice, image: productImage };
             cart.push(product);
             localStorage.setItem('cart', JSON.stringify(cart));
             alert(`${productName} has been added to your cart.`);
+            updateCartCount();
         }
 
         function viewCart() {
-            // Display cart content when cart icon is clicked
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             if (cart.length === 0) {
                 alert("Your cart is empty.");
@@ -31,6 +31,11 @@
                 });
                 alert(cartContent);
             }
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.getElementById('cart-count').textContent = cart.length;
         }
     </script>
 </head>
@@ -48,8 +53,6 @@
         <div class="nav-buttons">
             <a href="index.html" class="nav-link">Home</a>
             <a href="products.html" class="nav-link">Products</a>
-            
-            
             <a href="about.html" class="nav-link">About Us</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
@@ -79,62 +82,62 @@
         <div class="product">
             <img src="/products/f1.jpg" alt="Fashion Item 1">
             <p>Price: £39</p>
-            <button onclick="addToCart('Fashion Item 1', 39)">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 1', 39, '/products/f1.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f2.jpg" alt="Fashion Item 2">
             <p>Price: £49</p>
-            <button onclick="addToCart('Fashion Item 2', 49)">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 2', 49, '/products/f2.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f3.jpg" alt="Fashion Item 3">
             <p>Price: £59</p>
-            <button onclick="addToCart('Fashion Item 3', 59)">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 3', 59, '/products/f3.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f4.jpg" alt="Fashion Item 4">
             <p>Price: £69</p>
-            <button onclick="addToCart('Fashion Item 4', 69)">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 4', 69, '/products/f4.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f5.jpg" alt="Fashion Item 5">
             <p>Price: £79</p>
-            <button onclick="addToCart('Fashion Item 5', 79)">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 5', 79, '/products/f5.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/iphone10.webp" alt="Product 1">
             <p>Price: £499</p>
-            <button onclick="addToCart('Product 1', 499)">Add to Cart</button>
+            <button onclick="addToCart('Product 1', 499, '/products/iphone10.webp')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/iphun12.webp" alt="Product 2">
             <p>Price: £699</p>
-            <button onclick="addToCart('Product 2', 699)">Add to Cart</button>
+            <button onclick="addToCart('Product 2', 699, '/products/iphun12.webp')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/m4.jpg" alt="Product 3">
             <p>Price: £299</p>
-            <button onclick="addToCart('Product 3', 299)">Add to Cart</button>
+            <button onclick="addToCart('Product 3', 299, '/products/m4.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/metaquest.webp" alt="Product 4">
             <p>Price: £99</p>
-            <button onclick="addToCart('Product 4', 99)">Add to Cart</button>
+            <button onclick="addToCart('Product 4', 99, '/products/metaquest.webp')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/ringbell.webp" alt="Product 5">
             <p>Price: £109</p>
-            <button onclick="addToCart('Product 5', 109)">Add to Cart</button>
+            <button onclick="addToCart('Product 5', 109, '/products/ringbell.webp')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/watch.jpg" alt="Product 6">
             <p>Price: £119</p>
-            <button onclick="addToCart('Product 6', 119)">Add to Cart</button>
+            <button onclick="addToCart('Product 6', 119, '/products/watch.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/wirlesskeybord.jpg" alt="Product 7">
             <p>Price: £129</p>
-            <button onclick="addToCart('Product 7', 129)">Add to Cart</button>
+            <button onclick="addToCart('Product 7', 129, '/products/wirlesskeybord.jpg')">Add to Cart</button>
         </div>
     </div>
 
@@ -145,7 +148,6 @@
                 <h2>Quick Links</h2>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Categories</a></li>
                     <li><a href="#">Products</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
@@ -158,15 +160,6 @@
                 <p>Email: <a href="mailto:support@askdeal.com">support@askdeal.com</a></p>
                 <p>Phone: +44 7824 097509</p>
                 <p>Address: 123 Deal Street, London, UK</p>
-            </div>
-            <div class="footer-social">
-                <h2>Follow Us</h2>
-                <div class="social-icons">
-                    <a href="#" class="social-icon">Facebook</a>
-                    <a href="#" class="social-icon">Twitter</a>
-                    <a href="#" class="social-icon">Instagram</a>
-                    <a href="#" class="social-icon">LinkedIn</a>
-                </div>
             </div>
         </div>
         <div class="footer-bottom">
