@@ -11,26 +11,15 @@
         <!-- Wishlist items will be shown here -->
     </div>
 
-    <h2>Cart</h2>
-    <div id="cart-items">
-        <!-- Cart items will be shown here -->
-    </div>
-
     <script>
-        // Function to get the wishlist from localStorage
+        // Function to get the wishlist (which is the same as cart items)
         function getWishlist() {
-            return JSON.parse(localStorage.getItem('wishlist')) || [];
-        }
-
-        // Function to get the cart from localStorage
-        function getCart() {
             return JSON.parse(localStorage.getItem('cart')) || [];
         }
 
-        // Function to add product to both the cart and wishlist
+        // Function to add product to the cart (which will automatically be added to wishlist as well)
         function addToCartAndWishlist(productName, productPrice, imgSrc) {
-            let cart = getCart();
-            let wishlist = getWishlist();
+            let cart = getWishlist();
 
             // Create a product object
             let product = { name: productName, price: productPrice, img: imgSrc };
@@ -41,20 +30,13 @@
                 localStorage.setItem('cart', JSON.stringify(cart));
             }
 
-            // Add to wishlist if not already there
-            if (!wishlist.some(item => item.name === productName)) {
-                wishlist.push(product);
-                localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            }
-
-            // Update the display of the cart and wishlist
+            // Update the display of the wishlist (same as cart)
             updateWishlistDisplay();
-            updateCartDisplay();
 
-            alert(`${productName} has been added to both your cart and wishlist.`);
+            alert(`${productName} has been added to your wishlist and cart.`);
         }
 
-        // Function to display the wishlist
+        // Function to display the wishlist (which is same as cart)
         function updateWishlistDisplay() {
             const wishlist = getWishlist();
             const container = document.getElementById('wishlist-items');
@@ -74,30 +56,9 @@
             }
         }
 
-        // Function to display the cart
-        function updateCartDisplay() {
-            const cart = getCart();
-            const container = document.getElementById('cart-items');
-            container.innerHTML = '';
-
-            if (cart.length === 0) {
-                container.innerHTML = "<p>Your cart is empty.</p>";
-            } else {
-                cart.forEach(item => {
-                    const div = document.createElement('div');
-                    div.innerHTML = `
-                        <img src="${item.img}" alt="${item.name}" width="100">
-                        <p>${item.name} - £${item.price}</p>
-                    `;
-                    container.appendChild(div);
-                });
-            }
-        }
-
-        // Initialize both wishlist and cart displays on page load
+        // Initialize the wishlist display on page load
         window.onload = function() {
             updateWishlistDisplay();
-            updateCartDisplay();
         };
     </script>
 </body>
