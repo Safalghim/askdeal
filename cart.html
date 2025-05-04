@@ -178,7 +178,7 @@
                         <p class="cart-item-price">£${item.price.toFixed(2)}</p>
                     </div>
                     <div class="cart-item-actions">
-                        <button onclick="confirmRemoveFromCart('${item.name}')">Remove</button>
+                        <button onclick="removeItem('${item.name}')">Remove</button>
                         <button class="add-more-btn" onclick="addMore('${item.name}')">Add More</button>
                     </div>
                 `;
@@ -189,16 +189,20 @@
             cartTotal.textContent = total.toFixed(2);
         }
 
-        function confirmRemoveFromCart(itemName) {
-            if (confirm(`Are you sure you want to remove "${itemName}" from your cart?`)) {
-                removeFromCart(itemName);
-            }
-        }
-
-        function removeFromCart(itemName) {
+        function removeItem(itemName) {
             let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-            // Find the item index and remove it from the array
-            cartItems = cartItems.filter(item => item.name !== itemName);
+            const itemIndex = cartItems.findIndex(item => item.name === itemName);
+
+            if (itemIndex !== -1) {
+                // If quantity is greater than 1, decrease it
+                if (cartItems[itemIndex].quantity > 1) {
+                    cartItems[itemIndex].quantity--;
+                } else {
+                    // If quantity is 1, remove the item entirely
+                    cartItems.splice(itemIndex, 1);
+                }
+            }
+
             localStorage.setItem('cart', JSON.stringify(cartItems));
             loadCart();
         }
