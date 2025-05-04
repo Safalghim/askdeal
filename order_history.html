@@ -47,35 +47,48 @@
         }
 
         // Function to process the checkout and add the order to history
-        function checkout(orderDetails) {
+        function checkout() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add items to your cart before proceeding.");
+                return;
+            }
+
+            const orderDetails = {
+                id: new Date().getTime(), // Unique order ID based on timestamp
+                total_amount: cart.reduce((total, item) => total + (item.price * 1), 0).toFixed(2), // Sum of all items
+                order_date: new Date().toLocaleDateString(),
+                items: cart.map(item => ({
+                    product_name: item.name,
+                    quantity: 1, // Assuming 1 of each item in the cart for simplicity
+                    price: item.price
+                }))
+            };
+
+            // Save the new order to the order history
             let orderHistory = getOrderHistory();
-            // Add the new order to the history
             orderHistory.push(orderDetails);
             saveOrderHistory(orderHistory);
+
+            // Clear the cart after checkout
+            localStorage.setItem('cart', JSON.stringify([]));
+
             alert("Your order has been placed successfully!");
             window.location.href = "order_history.html"; // Redirect to order history page after checkout
         }
 
-        // Example of order details when a user completes checkout (this would be dynamically generated)
-        function generateOrderDetails() {
-            // Collect the order data dynamically from the checkout process
-            return {
-                id: new Date().getTime(), // Unique order ID based on timestamp
-                total_amount: 99.99, // Example total
-                order_date: new Date().toLocaleDateString(),
-                items: [
-                    { product_name: "Product 1", quantity: 2, price: 25.00 },
-                    { product_name: "Product 2", quantity: 1, price: 50.00 }
-                ]
-            };
+        // Function to simulate the checkout process (trigger this when user clicks 'Proceed to Checkout')
+        function simulateCheckout() {
+            checkout();
         }
 
-        // Simulate a checkout action (this is where the checkout process would trigger the function)
-        // Uncomment this line below after the actual checkout logic is handled
-        // checkout(generateOrderDetails());
+        // Call simulateCheckout() when the checkout process happens
+        // In a real checkout process, you'd replace this with actual checkout functionality
+        // For now, you can simulate it with a button or when proceeding to checkout
+        window.onload = function() {
+            displayOrderHistory();
+        };
 
-        // Run the function to display order history when the page loads
-        window.onload = displayOrderHistory;
     </script>
 </body>
 </html>
