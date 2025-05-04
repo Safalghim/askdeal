@@ -5,60 +5,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ASKDEAL - Get The Best Offers In All Products At One Place</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="logo.png">
-    <script src="main.js" defer></script>
-    <script>
-        // JavaScript to handle Add to Cart functionality
-        function addToCart(productName, productPrice) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let product = { name: productName, price: productPrice };
-            cart.push(product);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert(`${productName} has been added to your cart.`);
+    <script src="cart.js" defer></script>
+    <style>
+        /* Ensure images have a consistent size */
+        .product-image,
+        .prod-container img {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        function viewCart() {
-            // Display cart content when cart icon is clicked
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            if (cart.length === 0) {
-                alert("Your cart is empty.");
-            } else {
-                let cartContent = "Your Cart:\n";
-                cart.forEach(item => {
-                    cartContent += `${item.name} - £${item.price}\n`;
-                });
-                alert(cartContent);
-            }
+        /* For product cards, to ensure consistent layout */
+        .product,
+        .product-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin: 15px;
         }
-    </script>
+
+        .prod-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Welcome Section -->
     <section class="welcomsec">
         <h2>Welcome to ASKDEAL</h2>
         <h3>Get The Best Offers In All Products At One Place</h3>
     </section>
 
-    <!-- Navbar Section -->
     <nav>
         <h1 class="logo">ASKDEAL</h1>
         <div class="nav-buttons">
             <a href="index.html" class="nav-link">Home</a>
             <a href="products.html" class="nav-link">Products</a>
-            
-            
+            <a href="wishlist.html" class="nav-link">Wishlist</a>
+            <a href="order_history.html" class="nav-link">Order History</a>
             <a href="about.html" class="nav-link">About Us</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
-        <div class="search-container">
-            <input type="text" placeholder="Search..." class="search-bar">
-            <button class="search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
+
         <div class="user-cart">
             <button class="user-icon">
                 <a href="sign-in.html">
@@ -72,85 +69,159 @@
         </div>
     </nav>
 
-    <!-- Featured Products Section -->
-    <h2>Check Out Our Other Products</h2>
-    <div class="prod-container">
-        <!-- Product Listing with Add to Cart button -->
-        <div class="product">
-            <img src="/products/f1.jpg" alt="Fashion Item 1">
-            <p>Price: £39</p>
-            <button onclick="addToCart('Fashion Item 1', 39)">Add to Cart</button>
+    <section id="home" class="home active">
+        <div class="product-showcase">
+            <div class="product-container">
+                <div class="product-image-container">
+                    <img src="products/asuslaptop.jpg" alt="Asus Laptop" class="product-image">
+                    <div class="product-badge">New</div>
+                </div>
+                <div class="product-details">
+                    <h1 class="product-title">Asus Laptop</h1>
+                    <h3 class="product-subtitle">Powerful and Reliable</h3>
+                    <div class="product-description">
+                        <p>Experience high performance with the latest Asus Laptop.</p>
+                        <p>Price: £899</p>
+                        <div class="cta-container">
+                            <button class="cta-button" onclick="addToCart('Asus Laptop', 899, 'products/asuslaptop.jpg')">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="product">
-            <img src="/products/f2.jpg" alt="Fashion Item 2">
-            <p>Price: £49</p>
-            <button onclick="addToCart('Fashion Item 2', 49)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="/products/f3.jpg" alt="Fashion Item 3">
-            <p>Price: £59</p>
-            <button onclick="addToCart('Fashion Item 3', 59)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="/products/f4.jpg" alt="Fashion Item 4">
-            <p>Price: £69</p>
-            <button onclick="addToCart('Fashion Item 4', 69)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="/products/f5.jpg" alt="Fashion Item 5">
-            <p>Price: £79</p>
-            <button onclick="addToCart('Fashion Item 5', 79)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="/products/iphone10.webp" alt="Product 1">
-            <p>Price: £499</p>
-            <button onclick="addToCart('Product 1', 499)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="/products/iphun12.webp" alt="Product 2">
-            <p>Price: £699</p>
-            <button onclick="addToCart('Product 2', 699)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="/products/m4.jpg" alt="Product 3">
-            <p>Price: £299</p>
-            <button onclick="addToCart('Product 3', 299)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="/products/metaquest.webp" alt="Product 4">
-            <p>Price: £99</p>
-            <button onclick="addToCart('Product 4', 99)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="/products/ringbell.webp" alt="Product 5">
-            <p>Price: £109</p>
-            <button onclick="addToCart('Product 5', 109)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="/products/watch.jpg" alt="Product 6">
-            <p>Price: £119</p>
-            <button onclick="addToCart('Product 6', 119)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="/products/wirlesskeybord.jpg" alt="Product 7">
-            <p>Price: £129</p>
-            <button onclick="addToCart('Product 7', 129)">Add to Cart</button>
-        </div>
-    </div>
 
-    <!-- Footer Section -->
+        <h2>Our Other Products</h2>
+        <div class="prod-container">
+            <div class="product">
+                <img src="products/f1.jpg" alt="Beach Shirt">
+                <p>£39</p>
+                <button class="cta-button" onclick="addToCart('Beach Shirt', 39, 'products/f1.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/f2.jpg" alt="Fashion Male Shirt">
+                <p>£49</p>
+                <button class="cta-button" onclick="addToCart('Fashion Male Shirt', 49, 'products/f2.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/f3.jpg" alt="Male Shirt">
+                <p>£59</p>
+                <button class="cta-button" onclick="addToCart('Male Shirt', 59, 'products/f3.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/f4.jpg" alt="Fashion Wear">
+                <p>£69</p>
+                <button class="cta-button" onclick="addToCart('Fashion Wear', 69, 'products/f4.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/f5.jpg" alt="Fashion Wear">
+                <p>£79</p>
+                <button class="cta-button" onclick="addToCart('Fashion Wear', 79, 'products/f5.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/f6.jpg" alt="Male Shirt">
+                <p>£89</p>
+                <button class="cta-button" onclick="addToCart('Male Shirt', 89, 'products/f6.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/f7.jpg" alt="Male Comfort Wear">
+                <p>£99</p>
+                <button class="cta-button" onclick="addToCart('Male Comfort Wear', 99, 'products/f7.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/f8.jpg" alt="Comfort Wear">
+                <p>£109</p>
+                <button class="cta-button" onclick="addToCart('Comfort Wear', 109, 'products/f8.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/iphone10.webp" alt="iPhone 10">
+                <p>£999</p>
+                <button class="cta-button" onclick="addToCart('iPhone 10', 999, 'products/iphone10.webp')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/iphun12.webp" alt="iPhone 12">
+                <p>£1099</p>
+                <button class="cta-button" onclick="addToCart('iPhone 12', 1099, 'products/iphun12.webp')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/m4.jpg" alt="MacBook">
+                <p>£1119</p>
+                <button class="cta-button" onclick="addToCart('MacBook', 1119, 'products/m4.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/metaquest.webp" alt="Meta Quest">
+                <p>£499</p>
+                <button class="cta-button" onclick="addToCart('Meta Quest', 499, 'products/metaquest.webp')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/n1.jpg" alt="Fashion Wear">
+                <p>£29</p>
+                <button class="cta-button" onclick="addToCart('Fashion Wear', 29, 'products/n1.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/n2.jpg" alt="Fashion Wear">
+                <p>£39</p>
+                <button class="cta-button" onclick="addToCart('Fashion Wear', 39, 'products/n2.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/n3.jpg" alt="Fashion Wear">
+                <p>£29</p>
+                <button class="cta-button" onclick="addToCart('Fashion Wear', 29, 'products/n3.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/n4.jpg" alt="Fashion Wear">
+                <p>£39</p>
+                <button class="cta-button" onclick="addToCart('Fashion Wear', 39, 'products/n4.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/n5.jpg" alt="Male Fashion Shirt">
+                <p>£49</p>
+                <button class="cta-button" onclick="addToCart('Male Fashion Shirt', 49, 'products/n5.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/n6.jpg" alt="Half Pant for Men">
+                <p>£59</p>
+                <button class="cta-button" onclick="addToCart('Half Pant for Men', 59, 'products/n6.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/n7.jpg" alt="Male Jacket">
+                <p>£69</p>
+                <button class="cta-button" onclick="addToCart('Male Jacket', 69, 'products/n7.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/n8.jpg" alt="Half Shirt">
+                <p>£79</p>
+                <button class="cta-button" onclick="addToCart('Half Shirt', 79, 'products/n8.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/ringbell.webp" alt="Ring Bell">
+                <p>£19</p>
+                <button class="cta-button" onclick="addToCart('Ring Bell', 19, 'products/ringbell.webp')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/watch.jpg" alt="Watch">
+                <p>£199</p>
+                <button class="cta-button" onclick="addToCart('Watch', 199, 'products/watch.jpg')">Shop Now</button>
+            </div>
+            <div class="product">
+                <img src="products/wirlesskeybord.jpg" alt="Wireless Keyboard">
+                <p>£49</p>
+                <button class="cta-button" onclick="addToCart('Wireless Keyboard', 49, 'products/wirlesskeybord.jpg')">Shop Now</button>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-links">
                 <h2>Quick Links</h2>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Categories</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
                 </ul>
             </div>
             <div class="footer-contact">
@@ -159,15 +230,7 @@
                 <p>Phone: +44 7824 097509</p>
                 <p>Address: 123 Deal Street, London, UK</p>
             </div>
-            <div class="footer-social">
-                <h2>Follow Us</h2>
-                <div class="social-icons">
-                    <a href="#" class="social-icon">Facebook</a>
-                    <a href="#" class="social-icon">Twitter</a>
-                    <a href="#" class="social-icon">Instagram</a>
-                    <a href="#" class="social-icon">LinkedIn</a>
-                </div>
-            </div>
+
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
