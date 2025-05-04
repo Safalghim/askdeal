@@ -12,10 +12,22 @@
     </div>
 
     <script>
-        // Mock function to simulate getting order history from an API or database
+        // Function to get the order history from localStorage
         function getOrderHistory() {
-            // Normally you'd fetch from an API, but we'll mock it here with localStorage or hardcoded data.
             return JSON.parse(localStorage.getItem('orderHistory')) || [];
+        }
+
+        // Function to save the order history to localStorage
+        function saveOrderHistory(orders) {
+            localStorage.setItem('orderHistory', JSON.stringify(orders));
+        }
+
+        // Function to add an order to the order history
+        function addOrderToHistory(orderDetails) {
+            let orderHistory = getOrderHistory();
+            // Add the new order to the history
+            orderHistory.push(orderDetails);
+            saveOrderHistory(orderHistory);
         }
 
         // Function to display the order history
@@ -42,8 +54,33 @@
             }
         }
 
+        // Function to process the checkout and add the order to history
+        function checkout(orderDetails) {
+            addOrderToHistory(orderDetails);
+            alert("Your order has been placed successfully!");
+            window.location.href = "order_history.html"; // Redirect to order history page after checkout
+        }
+
+        // Example of order details when a user completes checkout (this would be dynamically generated)
+        function generateOrderDetails() {
+            // You would collect the order data dynamically from the checkout process
+            return {
+                id: new Date().getTime(), // Unique order ID based on timestamp
+                total_amount: 99.99, // Example total
+                order_date: new Date().toLocaleDateString(),
+                items: [
+                    { product_name: "Product 1", quantity: 2, price: 25.00 },
+                    { product_name: "Product 2", quantity: 1, price: 50.00 }
+                ]
+            };
+        }
+
+        // Simulate a checkout action (this is where the checkout process would trigger the function)
+        // Uncomment this line below after the actual checkout logic is handled
+        // checkout(generateOrderDetails());
+
         // Run the function to display order history when the page loads
-        displayOrderHistory();
+        window.onload = displayOrderHistory;
     </script>
 </body>
 </html>
