@@ -77,22 +77,23 @@
             window.location.href = "order_history.html"; // Redirect to order history page after checkout
         }
 
-        // Function to simulate the checkout process (trigger this when user clicks 'Proceed to Checkout')
-        function simulateCheckout() {
-            checkout();
-        }
-
-        // Call simulateCheckout() when the checkout process happens
-        // In a real checkout process, you'd replace this with actual checkout functionality
-        // For now, you can simulate it with a button or when proceeding to checkout
+        // Call this function when the user clicks "Proceed to Checkout"
+        // For now, simulate the checkout process using a button or call manually
+        // simulateCheckout();
 
         // Simulate the checkout for testing purposes (can be removed later)
+        // Uncomment the line below to simulate checkout and test order history functionality
         // simulateCheckout();
 
         // Run the function to display order history when the page loads
         window.onload = function() {
             displayOrderHistory();
         };
+
+        // Simulate checkout logic (this can be called after user clicks Proceed to Checkout)
+        function simulateCheckout() {
+            checkout();
+        }
     </script>
 </body>
 </html>
