@@ -197,6 +197,7 @@
 
         function removeFromCart(itemName) {
             let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            // Find the item index and remove it from the array
             cartItems = cartItems.filter(item => item.name !== itemName);
             localStorage.setItem('cart', JSON.stringify(cartItems));
             loadCart();
