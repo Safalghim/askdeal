@@ -11,84 +11,43 @@
     <script src="main.js" defer></script>
     <script>
         // JavaScript to handle Add to Cart functionality
-        function addToCart(productName, productPrice, productImage) {
+        function addToCart(productName, productPrice) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            
-            // Check if the product is already in the cart
-            let existingProduct = cart.find(item => item.name === productName);
-
-            if (existingProduct) {
-                // If the product exists, increase the quantity
-                existingProduct.quantity++;
-            } else {
-                // If the product doesn't exist, add a new entry
-                let product = {
-                    name: productName,
-                    price: productPrice,
-                    image: productImage,
-                    quantity: 1
-                };
-                cart.push(product);
-            }
-
+            let product = { name: productName, price: productPrice };
+            cart.push(product);
             localStorage.setItem('cart', JSON.stringify(cart));
             alert(`${productName} has been added to your cart.`);
             updateCartCount();
         }
 
-        // Function to display cart contents
         function viewCart() {
+            // Display cart content when cart icon is clicked
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             if (cart.length === 0) {
                 alert("Your cart is empty.");
             } else {
                 let cartContent = "Your Cart:\n";
                 cart.forEach(item => {
-                    cartContent += `${item.name} - £${item.price} x${item.quantity}\n`;
+                    cartContent += `${item.name} - £${item.price}\n`;
                 });
                 alert(cartContent);
             }
         }
 
-        // Function to update the cart count
         function updateCartCount() {
+            // Update the cart icon with the current number of items
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            document.getElementById('cart-count').textContent = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = cart.length;
         }
 
-        // Function to remove a product from the cart
-        function removeFromCart(productName) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart = cart.filter(item => item.name !== productName);
-            localStorage.setItem('cart', JSON.stringify(cart));
+        // Call updateCartCount on page load to set the correct cart count
+        window.onload = function() {
             updateCartCount();
-        }
-
-        // Function to increase the quantity of a product in the cart
-        function increaseQuantity(productName) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let product = cart.find(item => item.name === productName);
-            if (product) {
-                product.quantity++;
-                localStorage.setItem('cart', JSON.stringify(cart));
-                updateCartCount();
-            }
-        }
-
-        // Function to decrease the quantity of a product in the cart
-        function decreaseQuantity(productName) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let product = cart.find(item => item.name === productName);
-            if (product && product.quantity > 1) {
-                product.quantity--;
-                localStorage.setItem('cart', JSON.stringify(cart));
-                updateCartCount();
-            }
-        }
+        };
     </script>
 </head>
 
-<body onload="updateCartCount()">
+<body>
     <!-- Welcome Section -->
     <section class="welcomsec">
         <h2>Welcome to ASKDEAL</h2>
@@ -130,62 +89,62 @@
         <div class="product">
             <img src="/products/f1.jpg" alt="Fashion Item 1">
             <p>Price: £39</p>
-            <button onclick="addToCart('Fashion Item 1', 39, '/products/f1.jpg')">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 1', 39)">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f2.jpg" alt="Fashion Item 2">
             <p>Price: £49</p>
-            <button onclick="addToCart('Fashion Item 2', 49, '/products/f2.jpg')">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 2', 49)">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f3.jpg" alt="Fashion Item 3">
             <p>Price: £59</p>
-            <button onclick="addToCart('Fashion Item 3', 59, '/products/f3.jpg')">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 3', 59)">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f4.jpg" alt="Fashion Item 4">
             <p>Price: £69</p>
-            <button onclick="addToCart('Fashion Item 4', 69, '/products/f4.jpg')">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 4', 69)">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f5.jpg" alt="Fashion Item 5">
             <p>Price: £79</p>
-            <button onclick="addToCart('Fashion Item 5', 79, '/products/f5.jpg')">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 5', 79)">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/iphone10.webp" alt="Product 1">
             <p>Price: £499</p>
-            <button onclick="addToCart('Product 1', 499, '/products/iphone10.webp')">Add to Cart</button>
+            <button onclick="addToCart('Product 1', 499)">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/iphun12.webp" alt="Product 2">
             <p>Price: £699</p>
-            <button onclick="addToCart('Product 2', 699, '/products/iphun12.webp')">Add to Cart</button>
+            <button onclick="addToCart('Product 2', 699)">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/m4.jpg" alt="Product 3">
             <p>Price: £299</p>
-            <button onclick="addToCart('Product 3', 299, '/products/m4.jpg')">Add to Cart</button>
+            <button onclick="addToCart('Product 3', 299)">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/metaquest.webp" alt="Product 4">
             <p>Price: £99</p>
-            <button onclick="addToCart('Product 4', 99, '/products/metaquest.webp')">Add to Cart</button>
+            <button onclick="addToCart('Product 4', 99)">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/ringbell.webp" alt="Product 5">
             <p>Price: £109</p>
-            <button onclick="addToCart('Product 5', 109, '/products/ringbell.webp')">Add to Cart</button>
+            <button onclick="addToCart('Product 5', 109)">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/watch.jpg" alt="Product 6">
             <p>Price: £119</p>
-            <button onclick="addToCart('Product 6', 119, '/products/watch.jpg')">Add to Cart</button>
+            <button onclick="addToCart('Product 6', 119)">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/wirlesskeybord.jpg" alt="Product 7">
             <p>Price: £129</p>
-            <button onclick="addToCart('Product 7', 129, '/products/wirlesskeybord.jpg')">Add to Cart</button>
+            <button onclick="addToCart('Product 7', 129)">Add to Cart</button>
         </div>
     </div>
 
@@ -196,6 +155,7 @@
                 <h2>Quick Links</h2>
                 <ul>
                     <li><a href="#">Home</a></li>
+                    <li><a href="#">Categories</a></li>
                     <li><a href="#">Products</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
@@ -208,6 +168,15 @@
                 <p>Email: <a href="mailto:support@askdeal.com">support@askdeal.com</a></p>
                 <p>Phone: +44 7824 097509</p>
                 <p>Address: 123 Deal Street, London, UK</p>
+            </div>
+            <div class="footer-social">
+                <h2>Follow Us</h2>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">Facebook</a>
+                    <a href="#" class="social-icon">Twitter</a>
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">LinkedIn</a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
