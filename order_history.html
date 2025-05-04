@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Order History</h1>
+    <div id="orders"></div>
+
+    <script>
+        fetch('get_order_history.php')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('orders');
+                data.forEach(order => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <h3>Order #${order.id} - £${order.total_amount}</h3>
+                        <p>Date: ${order.order_date}</p>
+                        <ul>
+                            ${order.items.map(item => `<li>${item.product_name} x${item.quantity} - £${item.price}</li>`).join('')}
+                        </ul>
+                    `;
+                    container.appendChild(div);
+                });
+            });
+    </script>
+</body>
+</html>
