@@ -79,6 +79,14 @@
             background-color: #c82333;
         }
 
+        .cart-item-actions .add-more-btn {
+            background-color: #28a745;
+        }
+
+        .cart-item-actions .add-more-btn:hover {
+            background-color: #218838;
+        }
+
         .cart-summary {
             margin-top: 20px;
             text-align: right;
@@ -171,10 +179,11 @@
                     </div>
                     <div class="cart-item-actions">
                         <button onclick="confirmRemoveFromCart('${item.name}')">Remove</button>
+                        <button class="add-more-btn" onclick="addMore('${item.name}')">Add More</button>
                     </div>
                 `;
                 cartItemsContainer.appendChild(cartItem);
-                total += item.price;
+                total += item.price * (item.quantity || 1); // Consider quantity if available
             });
 
             cartTotal.textContent = total.toFixed(2);
@@ -189,6 +198,16 @@
         function removeFromCart(itemName) {
             let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
             cartItems = cartItems.filter(item => item.name !== itemName);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            loadCart();
+        }
+
+        function addMore(itemName) {
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const itemIndex = cartItems.findIndex(item => item.name === itemName);
+            if (itemIndex !== -1) {
+                cartItems[itemIndex].quantity = (cartItems[itemIndex].quantity || 1) + 1;
+            }
             localStorage.setItem('cart', JSON.stringify(cartItems));
             loadCart();
         }
