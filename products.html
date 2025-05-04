@@ -8,43 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="logo.png">
-    <script src="main.js" defer></script>
-    <script>
-        // JavaScript to handle Add to Cart functionality
-        function addToCart(productName, productPrice) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let product = { name: productName, price: productPrice };
-            cart.push(product);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert(`${productName} has been added to your cart.`);
-            updateCartCount();
-        }
-
-        function viewCart() {
-            // Display cart content when cart icon is clicked
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            if (cart.length === 0) {
-                alert("Your cart is empty.");
-            } else {
-                let cartContent = "Your Cart:\n";
-                cart.forEach(item => {
-                    cartContent += `${item.name} - £${item.price}\n`;
-                });
-                alert(cartContent);
-            }
-        }
-
-        function updateCartCount() {
-            // Update the cart icon with the current number of items
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            document.getElementById('cart-count').textContent = cart.length;
-        }
-
-        // Call updateCartCount on page load to set the correct cart count
-        window.onload = function() {
-            updateCartCount();
-        };
-    </script>
+    <script src="cart.js" defer></script> <!-- Link to the updated cart.js file -->
 </head>
 
 <body>
@@ -88,63 +52,75 @@
         <!-- Product Listing with Add to Cart button -->
         <div class="product">
             <img src="/products/f1.jpg" alt="Fashion Item 1">
+            <p>Fashion Item 1</p>
             <p>Price: £39</p>
-            <button onclick="addToCart('Fashion Item 1', 39)">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 1', 39, '/products/f1.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f2.jpg" alt="Fashion Item 2">
+            <p>Fashion Item 2</p>
             <p>Price: £49</p>
-            <button onclick="addToCart('Fashion Item 2', 49)">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 2', 49, '/products/f2.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f3.jpg" alt="Fashion Item 3">
+            <p>Fashion Item 3</p>
             <p>Price: £59</p>
-            <button onclick="addToCart('Fashion Item 3', 59)">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 3', 59, '/products/f3.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f4.jpg" alt="Fashion Item 4">
+            <p>Fashion Item 4</p>
             <p>Price: £69</p>
-            <button onclick="addToCart('Fashion Item 4', 69)">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 4', 69, '/products/f4.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/f5.jpg" alt="Fashion Item 5">
+            <p>Fashion Item 5</p>
             <p>Price: £79</p>
-            <button onclick="addToCart('Fashion Item 5', 79)">Add to Cart</button>
+            <button onclick="addToCart('Fashion Item 5', 79, '/products/f5.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/iphone10.webp" alt="Product 1">
+            <p>iPhone 10</p>
             <p>Price: £499</p>
-            <button onclick="addToCart('Product 1', 499)">Add to Cart</button>
+            <button onclick="addToCart('iPhone 10', 499, '/products/iphone10.webp')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/iphun12.webp" alt="Product 2">
+            <p>iPhone 12</p>
             <p>Price: £699</p>
-            <button onclick="addToCart('Product 2', 699)">Add to Cart</button>
+            <button onclick="addToCart('iPhone 12', 699, '/products/iphun12.webp')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/m4.jpg" alt="Product 3">
+            <p>MacBook Pro</p>
             <p>Price: £299</p>
-            <button onclick="addToCart('Product 3', 299)">Add to Cart</button>
+            <button onclick="addToCart('MacBook Pro', 299, '/products/m4.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/metaquest.webp" alt="Product 4">
+            <p>Meta Quest</p>
             <p>Price: £99</p>
-            <button onclick="addToCart('Product 4', 99)">Add to Cart</button>
+            <button onclick="addToCart('Meta Quest', 99, '/products/metaquest.webp')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/ringbell.webp" alt="Product 5">
+            <p>Ring Bell</p>
             <p>Price: £109</p>
-            <button onclick="addToCart('Product 5', 109)">Add to Cart</button>
+            <button onclick="addToCart('Ring Bell', 109, '/products/ringbell.webp')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/watch.jpg" alt="Product 6">
+            <p>Smart Watch</p>
             <p>Price: £119</p>
-            <button onclick="addToCart('Product 6', 119)">Add to Cart</button>
+            <button onclick="addToCart('Smart Watch', 119, '/products/watch.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="/products/wirlesskeybord.jpg" alt="Product 7">
+            <p>Wireless Keyboard</p>
             <p>Price: £129</p>
-            <button onclick="addToCart('Product 7', 129)">Add to Cart</button>
+            <button onclick="addToCart('Wireless Keyboard', 129, '/products/wirlesskeybord.jpg')">Add to Cart</button>
         </div>
     </div>
 
