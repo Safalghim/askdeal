@@ -7,24 +7,39 @@
 </head>
 <body>
     <h1>Order History</h1>
-    <div id="orders"></div>
+    <div id="orders">
+        <!-- Order details will be shown here -->
+    </div>
 
     <script>
+        // Fetch order history from the server-side script
         fetch('get_order_history.php')
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('orders');
-                data.forEach(order => {
-                    const div = document.createElement('div');
-                    div.innerHTML = `
-                        <h3>Order #${order.id} - £${order.total_amount}</h3>
-                        <p>Date: ${order.order_date}</p>
-                        <ul>
-                            ${order.items.map(item => `<li>${item.product_name} x${item.quantity} - £${item.price}</li>`).join('')}
-                        </ul>
-                    `;
-                    container.appendChild(div);
-                });
+
+                // Check if there are orders
+                if (data.length === 0) {
+                    container.innerHTML = "<p>You have no previous orders.</p>";
+                } else {
+                    // Display each order
+                    data.forEach(order => {
+                        const div = document.createElement('div');
+                        div.innerHTML = `
+                            <h3>Order #${order.id} - £${order.total_amount}</h3>
+                            <p>Date: ${order.order_date}</p>
+                            <ul>
+                                ${order.items.map(item => `<li>${item.product_name} x${item.quantity} - £${item.price}</li>`).join('')}
+                            </ul>
+                        `;
+                        container.appendChild(div);
+                    });
+                }
+            })
+            .catch(error => {
+                // If the request fails, show an error message
+                document.getElementById('orders').innerHTML = "<p>Failed to load order history. Please try again later.</p>";
+                console.error("Error fetching order history:", error);
             });
     </script>
 </body>
