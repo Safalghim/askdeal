@@ -13,13 +13,30 @@
         // JavaScript to handle Add to Cart functionality
         function addToCart(productName, productPrice, productImage) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let product = { name: productName, price: productPrice, image: productImage };
-            cart.push(product);
+            
+            // Check if the product is already in the cart
+            let existingProduct = cart.find(item => item.name === productName);
+
+            if (existingProduct) {
+                // If the product exists, increase the quantity
+                existingProduct.quantity++;
+            } else {
+                // If the product doesn't exist, add a new entry
+                let product = {
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: 1
+                };
+                cart.push(product);
+            }
+
             localStorage.setItem('cart', JSON.stringify(cart));
             alert(`${productName} has been added to your cart.`);
             updateCartCount();
         }
 
+        // Function to display cart contents
         function viewCart() {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             if (cart.length === 0) {
@@ -27,20 +44,51 @@
             } else {
                 let cartContent = "Your Cart:\n";
                 cart.forEach(item => {
-                    cartContent += `${item.name} - £${item.price}\n`;
+                    cartContent += `${item.name} - £${item.price} x${item.quantity}\n`;
                 });
                 alert(cartContent);
             }
         }
 
+        // Function to update the cart count
         function updateCartCount() {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            document.getElementById('cart-count').textContent = cart.length;
+            document.getElementById('cart-count').textContent = cart.reduce((total, item) => total + item.quantity, 0);
+        }
+
+        // Function to remove a product from the cart
+        function removeFromCart(productName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.name !== productName);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        // Function to increase the quantity of a product in the cart
+        function increaseQuantity(productName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let product = cart.find(item => item.name === productName);
+            if (product) {
+                product.quantity++;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+            }
+        }
+
+        // Function to decrease the quantity of a product in the cart
+        function decreaseQuantity(productName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let product = cart.find(item => item.name === productName);
+            if (product && product.quantity > 1) {
+                product.quantity--;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+            }
         }
     </script>
 </head>
 
-<body>
+<body onload="updateCartCount()">
     <!-- Welcome Section -->
     <section class="welcomsec">
         <h2>Welcome to ASKDEAL</h2>
