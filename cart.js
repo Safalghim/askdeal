@@ -1,5 +1,3 @@
-// cart.js
-
 // Function to add a product to the cart
 function addToCart(productName, productPrice, imgSrc) {
     // Retrieve the cart from localStorage or initialize an empty array
