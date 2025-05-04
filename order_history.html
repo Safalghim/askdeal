@@ -22,14 +22,6 @@
             localStorage.setItem('orderHistory', JSON.stringify(orders));
         }
 
-        // Function to add an order to the order history
-        function addOrderToHistory(orderDetails) {
-            let orderHistory = getOrderHistory();
-            // Add the new order to the history
-            orderHistory.push(orderDetails);
-            saveOrderHistory(orderHistory);
-        }
-
         // Function to display the order history
         function displayOrderHistory() {
             const orders = getOrderHistory();
@@ -56,14 +48,17 @@
 
         // Function to process the checkout and add the order to history
         function checkout(orderDetails) {
-            addOrderToHistory(orderDetails);
+            let orderHistory = getOrderHistory();
+            // Add the new order to the history
+            orderHistory.push(orderDetails);
+            saveOrderHistory(orderHistory);
             alert("Your order has been placed successfully!");
             window.location.href = "order_history.html"; // Redirect to order history page after checkout
         }
 
         // Example of order details when a user completes checkout (this would be dynamically generated)
         function generateOrderDetails() {
-            // You would collect the order data dynamically from the checkout process
+            // Collect the order data dynamically from the checkout process
             return {
                 id: new Date().getTime(), // Unique order ID based on timestamp
                 total_amount: 99.99, // Example total
