@@ -2,12 +2,45 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ASKDEAL - Contact Us</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .success-message {
+            display: none;
+            background-color: #e0ffe6;
+            border: 2px solid #4caf50;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .success-message h2 {
+            color: #2e7d32;
+            font-size: 24px;
+        }
+
+        .social-icons {
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #007BFF;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,7 +52,7 @@
     <nav>
         <h1 class="logo">ASKDEAL</h1>
         <div class="nav-buttons">
-          <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html" class="nav-link">Home</a>
             <a href="products.html" class="nav-link">Products</a>
             <a href="wishlist.html" class="nav-link">Wishlist</a>
             <a href="order_history.html" class="nav-link">Order History</a>
@@ -27,16 +60,14 @@
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
         <div class="search-container">
-            <input type="text" placeholder="Search..." class="search-bar">
+            <input type="text" placeholder="Search..." class="search-bar" />
             <button class="search-button">
                 <i class="fas fa-search"></i>
             </button>
         </div>
         <div class="user-cart">
             <button class="user-icon">
-                <a href="sign-in.html">
-                    <i class="fa fa-user"></i>
-                </a>
+                <a href="sign-in.html"><i class="fa fa-user"></i></a>
             </button>
             <button class="cart-icon" onclick="viewCart()">
                 <i class="fa fa-shopping-cart"></i>
@@ -45,9 +76,11 @@
         </div>
     </nav>
 
+    <!-- Contact Form Section -->
     <section id="form-details"
         style="background-color: #f9f9f9; padding: 40px; border-radius: 8px; max-width: 600px; margin: 40px auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <form action="submit_contact_form.php" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+        <form id="contact-form"
+            style="display: flex; flex-direction: column; gap: 20px;">
             <span style="font-size: 18px; color: #555; font-weight: bold;">LEAVE A MESSAGE</span>
             <h2 style="font-size: 24px; color: #333; margin-bottom: 10px;">Our Team will get to you in 12 hours</h2>
             <input type="text" name="name" placeholder="Your Name" required
@@ -58,11 +91,18 @@
                 style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;">
             <textarea name="message" cols="30" rows="10" placeholder="Your Message" required
                 style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; resize: none;"></textarea>
-            <button class="normal" type="submit"
+            <button type="submit"
                 style="padding: 12px; background-color: #007BFF; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">Submit</button>
         </form>
     </section>
 
+    <!-- Success Message -->
+    <div class="success-message" id="success-message">
+        <h2>Thank you for your message!</h2>
+        <p>Our team will reach out to you as soon as possible.</p>
+    </div>
+
+    <!-- Footer Section -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -82,6 +122,11 @@
                 <p>Email: <a href="mailto:support@askdeal.com">support@askdeal.com</a></p>
                 <p>Phone: +44 7824 097509</p>
                 <p>Address: 123 Deal Street, London, UK</p>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/447824097509" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -89,7 +134,21 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        const form = document.getElementById("contact-form");
+        const successMessage = document.getElementById("success-message");
+        const formSection = document.getElementById("form-details");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Optionally handle sending data via JS or PHP endpoint here
+
+            // Show success message, hide form
+            form.style.display = "none";
+            successMessage.style.display = "block";
+        });
+    </script>
 </body>
 
 </html>
