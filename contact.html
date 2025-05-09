@@ -40,6 +40,20 @@
         .social-icons a:hover {
             color: #007BFF;
         }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -51,36 +65,12 @@
 
     <nav>
         <h1 class="logo">ASKDEAL</h1>
-        <div class="nav-buttons">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="products.html" class="nav-link">Products</a>
-            <a href="wishlist.html" class="nav-link">Wishlist</a>
-            <a href="order_history.html" class="nav-link">Order History</a>
-            <a href="about.html" class="nav-link">About Us</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-        </div>
-        <div class="search-container">
-            <input type="text" placeholder="Search..." class="search-bar" />
-            <button class="search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-        <div class="user-cart">
-            <button class="user-icon">
-                <a href="sign-in.html"><i class="fa fa-user"></i></a>
-            </button>
-            <button class="cart-icon" onclick="viewCart()">
-                <i class="fa fa-shopping-cart"></i>
-                <span id="cart-count">0</span>
-            </button>
-        </div>
     </nav>
 
     <!-- Contact Form Section -->
     <section id="form-details"
         style="background-color: #f9f9f9; padding: 40px; border-radius: 8px; max-width: 600px; margin: 40px auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <form id="contact-form"
-            style="display: flex; flex-direction: column; gap: 20px;">
+        <form id="contact-form" style="display: flex; flex-direction: column; gap: 20px;">
             <span style="font-size: 18px; color: #555; font-weight: bold;">LEAVE A MESSAGE</span>
             <h2 style="font-size: 24px; color: #333; margin-bottom: 10px;">Our Team will get to you in 12 hours</h2>
             <input type="text" name="name" placeholder="Your Name" required
@@ -108,13 +98,13 @@
             <div class="footer-links">
                 <h2>Quick Links</h2>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Categories</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><span>Home</span></li>
+                    <li><span>Categories</span></li>
+                    <li><span>Products</span></li>
+                    <li><span>About Us</span></li>
+                    <li><span>Contact Us</span></li>
+                    <li><span>Privacy Policy</span></li>
+                    <li><span>Terms of Service</span></li>
                 </ul>
             </div>
             <div class="footer-contact">
@@ -137,14 +127,9 @@
     <script>
         const form = document.getElementById("contact-form");
         const successMessage = document.getElementById("success-message");
-        const formSection = document.getElementById("form-details");
 
         form.addEventListener("submit", function (e) {
-            e.preventDefault(); // Prevent default form submission
-
-            // Optionally handle sending data via JS or PHP endpoint here
-
-            // Show success message, hide form
+            e.preventDefault();
             form.style.display = "none";
             successMessage.style.display = "block";
         });
