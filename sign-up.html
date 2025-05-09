@@ -6,9 +6,44 @@
     <link rel="icon" href="logo.png">
     <link rel="stylesheet" href="sign-in.css">
     <link rel="stylesheet" href="style.css">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASKDEAL - Sign Up Page</title>
+    <style>
+        .success-message {
+            display: none;
+            text-align: center;
+            margin: 50px auto;
+            padding: 30px;
+            max-width: 500px;
+            background-color: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+        }
+
+        .success-message h2 {
+            color: #2e7d32;
+            font-size: 24px;
+        }
+
+        .success-message p {
+            font-size: 16px;
+            margin: 15px 0;
+        }
+
+        .success-message button {
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .success-message button:hover {
+            background-color: #388e3c;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,8 +51,9 @@
         <h2>Let's Get Back To ASKDEAL</h2>
         <h3>Get The Best Offers In All Products At One Place</h3>
     </section>
-    <div class="signup-container">
-        <form method="POST">
+
+    <div class="signup-container" id="signup-section">
+        <form id="signup-form">
             <h1>Sign Up</h1>
             <div class="form-group">
                 <label for="name">Full Name</label>
@@ -45,6 +81,13 @@
         </form>
     </div>
 
+    <!-- Success message container -->
+    <div class="success-message" id="success-message">
+        <h2>Thank you for registering with ASKDEAL!</h2>
+        <p>You can now log in to your account and start shopping smart.</p>
+        <button onclick="window.location.href='sign-in.html'">Log In</button>
+    </div>
+
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -65,13 +108,29 @@
                 <p>Phone: +44 7824 097509</p>
                 <p>Address: 123 Deal Street, London, UK</p>
             </div>
-
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 ASKDEAL. All rights reserved.</p>
         </div>
     </footer>
-</body>
 
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('c_password').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // Simulate registration success
+            document.getElementById('signup-section').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+        });
+    </script>
+</body>
 
 </html>
