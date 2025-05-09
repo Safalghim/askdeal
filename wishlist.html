@@ -5,9 +5,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASKDEAL - Contact Us</title>
+    <title>ASKDEAL - Wishlist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
+    <style>
+        #wishlist-items {
+            max-width: 900px;
+            margin: 30px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .wishlist-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+        }
+
+        .wishlist-card img {
+            max-width: 100%;
+            border-radius: 6px;
+        }
+
+        .wishlist-card p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,51 +48,44 @@
     <nav>
         <h1 class="logo">ASKDEAL</h1>
         <div class="nav-buttons">
-             <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html" class="nav-link">Home</a>
             <a href="products.html" class="nav-link">Products</a>
             <a href="wishlist.html" class="nav-link">Wishlist</a>
             <a href="order_history.html" class="nav-link">Order History</a>
             <a href="about.html" class="nav-link">About Us</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
-         <div class="search-container">
+        <div class="search-container">
             <input type="text" placeholder="Search..." class="search-bar">
             <button class="search-button">
                 <i class="fas fa-search"></i>
             </button>
-            </div>
-            </nav>
-            
-            <h1 align="center" color="red">WISHLIST</h1>
-            <h3 align="center">There is no wishlist</h3>
+        </div>
+    </nav>
 
+    <h1 align="center">WISHLIST</h1>
+    <div id="wishlist-items">
+        <!-- Wishlist items will be displayed here -->
+    </div>
 
     <script>
-        // Function to get the wishlist (which is the same as cart items)
         function getWishlist() {
             return JSON.parse(localStorage.getItem('cart')) || [];
         }
 
-        // Function to add product to the cart (which will automatically be added to wishlist as well)
         function addToCartAndWishlist(productName, productPrice, imgSrc) {
             let cart = getWishlist();
-
-            // Create a product object
             let product = { name: productName, price: productPrice, img: imgSrc };
 
-            // Add to cart if not already there
             if (!cart.some(item => item.name === productName)) {
                 cart.push(product);
                 localStorage.setItem('cart', JSON.stringify(cart));
             }
 
-            // Update the display of the wishlist (same as cart)
             updateWishlistDisplay();
-
-            alert(`${productName} has been added to your wishlist and cart.`);
+            alert(`${productName} has been added to your wishlist.`);
         }
 
-        // Function to display the wishlist (which is same as cart)
         function updateWishlistDisplay() {
             const wishlist = getWishlist();
             const container = document.getElementById('wishlist-items');
@@ -74,19 +96,21 @@
             } else {
                 wishlist.forEach(item => {
                     const div = document.createElement('div');
+                    div.className = "wishlist-card";
                     div.innerHTML = `
-                        <img src="${item.img}" alt="${item.name}" width="100">
-                        <p>${item.name} - £${item.price}</p>
+                        <img src="${item.img}" alt="${item.name}">
+                        <p>${item.name}</p>
+                        <p>£${item.price}</p>
                     `;
                     container.appendChild(div);
                 });
             }
         }
 
-        // Initialize the wishlist display on page load
-        window.onload = function() {
+        window.onload = function () {
             updateWishlistDisplay();
         };
     </script>
 </body>
+
 </html>
