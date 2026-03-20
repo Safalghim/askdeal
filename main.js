@@ -76,8 +76,27 @@ function addEventListeners() {
   });
 }
 
+// Helper: check if the user is logged in via the PHP session
+async function checkLoginStatus() {
+  try {
+    const res = await fetch("check_session.php");
+    const json = await res.json();
+    return json.loggedIn;
+  } catch (e) {
+    return false;
+  }
+}
+
 // Function to add products to cart
-function addToCart(productId) {
+async function addToCart(productId) {
+  // Guard: require login before adding to cart
+  const loggedIn = await checkLoginStatus();
+  if (!loggedIn) {
+    alert("Please log in to add items to your cart.");
+    window.location.href = "login.php";
+    return;
+  }
+
   const productToAdd =
     data.find((product) => product.id == productId) ||
     products.find((product) => product.id == productId);
