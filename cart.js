@@ -1,5 +1,24 @@
+// Helper: check if the user is logged in via the PHP session
+async function checkLoginStatus() {
+    try {
+        const res = await fetch("check_session.php");
+        const data = await res.json();
+        return data.loggedIn;
+    } catch (e) {
+        return false;
+    }
+}
+
 // Function to add a product to the cart
-function addToCart(productName, productPrice, imgSrc) {
+async function addToCart(productName, productPrice, imgSrc) {
+    // Guard: require login before adding to cart
+    const loggedIn = await checkLoginStatus();
+    if (!loggedIn) {
+        alert("Please log in to add items to your cart.");
+        window.location.href = "login.php";
+        return;
+    }
+
     // Retrieve the cart from localStorage or initialize an empty array
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
